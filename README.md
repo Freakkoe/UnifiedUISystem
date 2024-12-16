@@ -2,7 +2,7 @@ HR-ON Employment Management System
 
 This solution is a simplified version of an employment management system inspired by HR-ON, built using ASP.NET Core Razor Pages and SQL Server. The project provides CRUD (Create, Read, Update, Delete) functionality for managing employment records, including details like job title, employee name, start date, department, and status.
 
-Technologies Used
+Technologies Used✅
 
 
 ASP.NET Core (.NET 8.0)
@@ -14,7 +14,7 @@ SQL Server LocalDB for database storage
 Entity Framework Core for data access
 
 
-Key Features
+Key Features✅
 
 
 CRUD Operations: Easily manage employment records (add, edit, delete, and view).
