@@ -1,0 +1,66 @@
+﻿@page
+@model HRONSystem.Pages.Employment.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Employment[0].JobTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employment[0].EmployeeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employment[0].StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employment[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employment[0].Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employment[0].Notes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Employment) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.EmploymentID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.EmploymentID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.EmploymentID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

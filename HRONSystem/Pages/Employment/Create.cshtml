@@ -1,0 +1,62 @@
+﻿@page
+@model HRONSystem.Pages.Employment.CreateModel
+
+        @{
+        ViewData["Title"] = "Create";
+        }
+        
+        <h1>Create</h1>
+        
+    <h4>Employment</h4>
+    <hr />
+    <div class="row">
+    <div class="col-md-4">
+    <form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Employment.JobTitle" class="control-label"></label>
+                <input asp-for="Employment.JobTitle" class="form-control" />
+                <span asp-validation-for="Employment.JobTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Employment.EmployeeName" class="control-label"></label>
+                <input asp-for="Employment.EmployeeName" class="form-control" />
+                <span asp-validation-for="Employment.EmployeeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Employment.StartDate" class="control-label"></label>
+                <input asp-for="Employment.StartDate" class="form-control" />
+                <span asp-validation-for="Employment.StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employment.Status" class="control-label"></label>
+                <input asp-for="Employment.Status" class="form-control" />
+                <span asp-validation-for="Employment.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employment.Department" class="control-label"></label>
+                <input asp-for="Employment.Department" class="form-control" />
+                <span asp-validation-for="Employment.Department" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employment.Notes" class="control-label"></label>
+                <input asp-for="Employment.Notes" class="form-control" />
+                <span asp-validation-for="Employment.Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
