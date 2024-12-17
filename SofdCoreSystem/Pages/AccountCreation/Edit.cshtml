@@ -1,0 +1,90 @@
+﻿@page
+@model SofdCoreSystem.Pages.AccountCreation.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>AccountCreation</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="AccountCreation.Id" />
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="AccountCreation.FirstName" class="control-label"></label>
+                <input asp-for="AccountCreation.FirstName" class="form-control" />
+                <span asp-validation-for="AccountCreation.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="AccountCreation.LastName" class="control-label"></label>
+                <input asp-for="AccountCreation.LastName" class="form-control" />
+                <span asp-validation-for="AccountCreation.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="AccountCreation.Position" class="control-label"></label>
+                <input asp-for="AccountCreation.Position" class="form-control" />
+                <span asp-validation-for="AccountCreation.Position" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="AccountCreation.JobType" class="control-label"></label>
+                <input asp-for="AccountCreation.JobType" class="form-control" />
+                <span asp-validation-for="AccountCreation.JobType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="AccountCreation.StartDate" class="control-label"></label>
+                <input asp-for="AccountCreation.StartDate" class="form-control" />
+                <span asp-validation-for="AccountCreation.StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="AccountCreation.EndDate" class="control-label"></label>
+                <input asp-for="AccountCreation.EndDate" class="form-control" />
+                <span asp-validation-for="AccountCreation.EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="AccountCreation.EmployeeNumber" class="control-label"></label>
+                <input asp-for="AccountCreation.EmployeeNumber" class="form-control" />
+                <span asp-validation-for="AccountCreation.EmployeeNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="AccountCreation.WorkHours" class="control-label"></label>
+                <input asp-for="AccountCreation.WorkHours" class="form-control" />
+                <span asp-validation-for="AccountCreation.WorkHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="AccountCreation.CreationDate" class="control-label"></label>
+                <input asp-for="AccountCreation.CreationDate" class="form-control" />
+                <span asp-validation-for="AccountCreation.CreationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="AccountCreation.LastUpdated" class="control-label"></label>
+                <input asp-for="AccountCreation.LastUpdated" class="form-control" />
+                <span asp-validation-for="AccountCreation.LastUpdated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
