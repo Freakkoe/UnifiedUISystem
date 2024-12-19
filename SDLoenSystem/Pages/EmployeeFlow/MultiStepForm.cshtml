@@ -3,6 +3,81 @@
 
 <h2>Opret Ny Medarbejder</h2>
 
+<form method="post">
+    <!-- Trin 1 -->
+    <h3>Trin 1: Dato</h3>
+    <label>Ansættelsesdato:</label>
+    <input type="date" asp-for="EmployeeInfo.EmploymentDate" required />
+    <br />
+    <label>CPR-Nummer:</label>
+    <input type="text" asp-for="EmployeeInfo.CPRNumber" required />
+    <br />
+
+    <!-- Trin 2 -->
+    <h3>Trin 2: Person</h3>
+    <label>Fornavn:</label>
+    <input type="text" asp-for="EmployeeInfo.FirstName" required />
+    <br />
+    <label>Efternavn:</label>
+    <input type="text" asp-for="EmployeeInfo.LastName" required />
+    <br />
+    <label>Adresse:</label>
+    <input type="text" asp-for="EmployeeInfo.Address" />
+    <br />
+    <label>Telefon (Arbejde):</label>
+    <input type="text" asp-for="EmployeeInfo.PhoneWork" />
+    <br />
+    <label>Telefon (Privat):</label>
+    <input type="text" asp-for="EmployeeInfo.PhonePrivate" />
+    <br />
+    <label>Email (Arbejde):</label>
+    <input type="email" asp-for="EmployeeInfo.EmailWork" />
+    <br />
+    <label>Email (Privat):</label>
+    <input type="email" asp-for="EmployeeInfo.EmailPrivate" />
+    <br />
+
+    <!-- Trin 3 -->
+    <h3>Trin 3: Ansættelse</h3>
+    <label>Stillingsbetegnelse:</label>
+    <input type="text" asp-for="EmployeeInfo.Position" required />
+    <br />
+    <label>Arbejdstid:</label>
+    <input type="number" asp-for="EmployeeInfo.WorkHours" required />
+    <br />
+    <label>Institution:</label>
+    <input type="text" asp-for="EmployeeInfo.Institution" />
+    <br />
+    <label>Jobtype:</label>
+    <input type="text" asp-for="EmployeeInfo.JobType" />
+    <br />
+    <label>Afdeling:</label>
+    <input type="text" asp-for="EmployeeInfo.Department" />
+    <br />
+    <label>Autorisation:</label>
+    <input type="text" asp-for="EmployeeInfo.AuthorizationRequirement" />
+    <br />
+
+    <!-- Metadata -->
+    <h3>Metadata</h3>
+    <label>Startdato:</label>
+    <input type="date" asp-for="EmployeeInfo.StartDate" />
+    <br />
+    <label>Slutdato:</label>
+    <input type="date" asp-for="EmployeeInfo.EndDate" />
+    <br />
+    <label>Oprettelsesdato:</label>
+    <input type="date" asp-for="EmployeeInfo.CreationDate" readonly value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+    <br />
+    <button type="submit">Gem</button>
+</form>
+
+
+@* @page
+@model SDLoenSystem.Pages.EmployeeFlow.MultiStepFormModel
+
+<h2>Opret Ny Medarbejder</h2>
+
 <!-- Fanemenu -->
 <div>
     <ul class="tab-navigation">
@@ -16,8 +91,13 @@
 <!-- Formulartrin -->
 @if (Model.CurrentStep == 1)
 {
-    <h3>Trin 1: Dato</h3>
-    <form method="post">
+    <form method="post" action="/EmployeeFlow/MultiStepForm">
+        <input type="hidden" name="step" value="1" />
+        <input type="text" name="EmploymentDate" />
+        <button type="submit">Test</button>
+    </form>
+    @* <h3>Trin 1: Dato</h3>
+    <form method="post" asp-page="MultiStepForm">
         <input type="hidden" asp-for="CurrentStep" />
         <label>Ansættelsesdato:</label>
         <input type="date" asp-for="EmployeeInfo.EmploymentDate" required />
@@ -29,7 +109,7 @@
 else if (Model.CurrentStep == 2)
 {
     <h3>Trin 2: Person</h3>
-    <form method="post">
+    <form method="post" asp-page="MultiStepForm">
         <input type="hidden" asp-for="CurrentStep" />
         <label>Fornavn:</label>
         <input type="text" asp-for="EmployeeInfo.FirstName" required />
@@ -43,7 +123,7 @@ else if (Model.CurrentStep == 2)
 else if (Model.CurrentStep == 3)
 {
     <h3>Trin 3: Ansættelse</h3>
-    <form method="post">
+    <form method="post" asp-page="MultiStepForm">
         <input type="hidden" asp-for="CurrentStep" />
         <label>Stillingsbetegnelse:</label>
         <input type="text" asp-for="EmployeeInfo.Position" />
@@ -74,7 +154,7 @@ else if (Model.CurrentStep == 3)
     </div>
 }
 
-@* @page
+@page
 @model SDLoenSystem.Pages.EmployeeFlow.MultiStepFormModel
 
 <h2>Opret Ny Medarbejder</h2>

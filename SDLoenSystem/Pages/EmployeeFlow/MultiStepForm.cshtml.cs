@@ -17,62 +17,127 @@ namespace SDLoenSystem.Pages.EmployeeFlow
         [BindProperty]
         public Models.EmployeeInfo EmployeeInfo { get; set; } = new Models.EmployeeInfo();
 
-        [BindProperty]
-        public int CurrentStep { get; set; } = 1;
-
-        public IActionResult OnGet()
+        public void OnGet()
         {
-            // Sørger for, at EmployeeInfo aldrig er null
-            EmployeeInfo ??= new Models.EmployeeInfo();
-            CurrentStep = 1;
-            return Page();
+            // Initialisering om nødvendigt
         }
 
         public IActionResult OnPost()
         {
-            Console.WriteLine($"Current Step: {CurrentStep}");
-            Console.WriteLine($"EmploymentDate: {EmployeeInfo?.EmploymentDate}");
-            Console.WriteLine($"CPRNumber: {EmployeeInfo?.CPRNumber}");
-
-            if (CurrentStep == 1)
+            if (!ModelState.IsValid)
             {
-                if (string.IsNullOrEmpty(EmployeeInfo.CPRNumber) || EmployeeInfo.EmploymentDate == DateTime.MinValue)
-                {
-                    ModelState.AddModelError("", "Ansættelsedato og CPR-Nummer skal udfyldes.");
-                    return Page();
-                }
-            }
-            else if (CurrentStep == 2)
-            {
-                if (string.IsNullOrEmpty(EmployeeInfo.FirstName) || string.IsNullOrEmpty(EmployeeInfo.LastName))
-                {
-                    ModelState.AddModelError("", "fornavn og efternavn skal udfyldes");
-                    return Page();
-                }
+                return Page();
             }
 
-            //if (!ModelState.IsValid)
-            //{
-            //    Console.WriteLine("ModelState is invalid");
-            //    return Page();
-            //}
+            // Gemmer data i databasen
+            _context.EmployeeInfos.Add(EmployeeInfo);
+            _context.SaveChanges();
 
-            // Avancerer trin
-            CurrentStep++;
-
-            // Hvis trin 4 er færdigt, gem data i databasen
-            if (CurrentStep > 4)
-            {
-                Console.WriteLine("Saving EmployeeInfo to database");
-                _context.EmployeeInfos.Add(EmployeeInfo);
-                _context.SaveChanges();
-                return RedirectToPage("Index");
-            }
-
-            return Page();
+            return RedirectToPage("/EmployeeInfo/Index");
         }
     }
 }
+
+
+//using Microsoft.AspNetCore.Mvc;
+//using Microsoft.AspNetCore.Mvc.RazorPages;
+//using SDLoenSystem.Data;
+//using SDLoenSystem.Models;
+
+//namespace SDLoenSystem.Pages.EmployeeFlow
+//{
+//    public class MultiStepFormModel : PageModel
+//    {
+//        private readonly SDLOENDbContext _context;
+
+//        public MultiStepFormModel(SDLOENDbContext context)
+//        {
+//            _context = context;
+//        }
+
+//        [BindProperty]
+//        public Models.EmployeeInfo EmployeeInfo { get; set; } = new Models.EmployeeInfo();
+
+//        [BindProperty]
+//        public int CurrentStep { get; set; } = 1;
+
+//        public IActionResult OnGet()
+//        {
+//            if (EmployeeInfo == null)
+//            {
+//                EmployeeInfo = new Models.EmployeeInfo();
+//            }
+
+//            if (CurrentStep == 0)
+//            {
+//                CurrentStep = 1;
+//            } 
+//            // Sørger for, at EmployeeInfo aldrig er null
+
+//            //EmployeeInfo ??= new Models.EmployeeInfo();
+//            //CurrentStep = 1;
+//            return Page();
+//        }
+
+//        public IActionResult OnPost(int CurrentStep)
+//        {
+//            Console.WriteLine($"Current Step: {CurrentStep}"); //TROUBLESHOOTING/Debug
+//            Console.WriteLine($"EmploymentDate: {EmployeeInfo?.EmploymentDate}"); //TROUBLESHOOTING/Debug
+//            Console.WriteLine($"CPRNumber: {EmployeeInfo?.CPRNumber}"); //TROUBLESHOOTING/Debug
+
+//            this.CurrentStep = CurrentStep;
+
+//            //if (CurrentStep == 1)
+//            //{
+//            //    if (string.IsNullOrEmpty(EmployeeInfo.CPRNumber) || EmployeeInfo.EmploymentDate == DateTime.MinValue)
+//            //    {
+//            //        ModelState.AddModelError("", "Ansættelsedato og CPR-Nummer skal udfyldes.");
+//            //        return Page();
+//            //    }
+//            //}
+//            //else if (CurrentStep == 2)
+//            //{
+//            //    if (string.IsNullOrEmpty(EmployeeInfo.FirstName) || string.IsNullOrEmpty(EmployeeInfo.LastName))
+//            //    {
+//            //        ModelState.AddModelError("", "fornavn og efternavn skal udfyldes");
+//            //        return Page();
+//            //    }
+//            //}
+//            //else if (CurrentStep == 3)
+//            //{
+//            //    if (string.IsNullOrEmpty(EmployeeInfo.Position) || EmployeeInfo.WorkHours <= 0)
+//            //    {
+//            //        ModelState.AddModelError("", "Stilling og arbejdstid skal udfyldes");
+//            //        return Page();
+//            //    }
+//            //}
+
+//            if (!ModelState.IsValid)
+//            {
+//                Console.WriteLine("ModelState is invalid");
+//                return Page();
+//            }
+
+//            // Avancerer trin
+//            Console.WriteLine($"current step before update: {CurrentStep}");
+//            CurrentStep++;
+//            Console.WriteLine($"current step after update: {CurrentStep}");
+
+
+//            // Hvis trin 4 er færdigt, gem data i databasen
+//            if (CurrentStep > 4)
+//            {
+//                Console.WriteLine("Saving EmployeeInfo to database");
+//                _context.EmployeeInfos.Add(EmployeeInfo);
+//                _context.SaveChanges();
+//                return RedirectToPage("Index");
+//            }
+
+//            Console.WriteLine($"Next step set to: {CurrentStep}");
+//            return Page();
+//        }
+//    }
+//}
 
 //using Microsoft.AspNetCore.Mvc;
 //using Microsoft.AspNetCore.Mvc.RazorPages;

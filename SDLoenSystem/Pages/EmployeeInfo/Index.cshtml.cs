@@ -19,7 +19,7 @@ namespace SDLoenSystem.Pages.EmployeeInfo
             _context = context;
         }
 
-        public IList<Models.EmployeeInfo> EmployeeInfo { get;set; } = default!;
+        public IList<Models.EmployeeInfo> EmployeeInfo { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
