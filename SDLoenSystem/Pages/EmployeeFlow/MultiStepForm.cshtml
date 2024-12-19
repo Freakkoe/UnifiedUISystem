@@ -1,0 +1,151 @@
+﻿@page
+@model SDLoenSystem.Pages.EmployeeFlow.MultiStepFormModel
+
+<h2>Opret Ny Medarbejder</h2>
+
+<!-- Fanemenu -->
+<div>
+    <ul class="tab-navigation">
+        <li class="@(Model.CurrentStep == 1 ? "active" : "disabled")">Dato</li>
+        <li class="@(Model.CurrentStep == 2 ? "active" : "disabled")">Person</li>
+        <li class="@(Model.CurrentStep == 3 ? "active" : "disabled")">Ansættelse</li>
+        <li class="@(Model.CurrentStep == 4 ? "active" : "disabled")">Bekræft</li>
+    </ul>
+</div>
+
+<!-- Formulartrin -->
+@if (Model.CurrentStep == 1)
+{
+    <h3>Trin 1: Dato</h3>
+    <form method="post">
+        <input type="hidden" asp-for="CurrentStep" />
+        <label>Ansættelsesdato:</label>
+        <input type="date" asp-for="EmployeeInfo.EmploymentDate" required />
+        <label>CPR-Nummer:</label>
+        <input type="text" asp-for="EmployeeInfo.CPRNumber" required />
+        <button type="submit">Næste</button>
+    </form>
+}
+else if (Model.CurrentStep == 2)
+{
+    <h3>Trin 2: Person</h3>
+    <form method="post">
+        <input type="hidden" asp-for="CurrentStep" />
+        <label>Fornavn:</label>
+        <input type="text" asp-for="EmployeeInfo.FirstName" required />
+        <label>Efternavn:</label>
+        <input type="text" asp-for="EmployeeInfo.LastName" required />
+        <label>Adresse:</label>
+        <input type="text" asp-for="EmployeeInfo.Address" />
+        <button type="submit">Næste</button>
+    </form>
+}
+else if (Model.CurrentStep == 3)
+{
+    <h3>Trin 3: Ansættelse</h3>
+    <form method="post">
+        <input type="hidden" asp-for="CurrentStep" />
+        <label>Stillingsbetegnelse:</label>
+        <input type="text" asp-for="EmployeeInfo.Position" />
+        <label>Arbejdstid:</label>
+        <input type="number" asp-for="EmployeeInfo.WorkHours" />
+        <label>Institution:</label>
+        <input type="text" asp-for="EmployeeInfo.Institution" />
+        <button type="submit">Næste</button>
+    </form>
+}
+@if (Model.CurrentStep == 4)
+{
+    <h3>Trin 4: Bekræft</h3>
+    <div>
+        <p><strong>Ansættelsesdato:</strong> @(Model.EmployeeInfo.EmploymentDate.ToString("dd-MM-yyyy"))</p>
+        <p><strong>CPR-Nummer:</strong> @(Model.EmployeeInfo.CPRNumber)</p>
+        <p><strong>Fornavn:</strong> @(Model.EmployeeInfo.FirstName)</p>
+        <p><strong>Efternavn:</strong> @(Model.EmployeeInfo.LastName)</p>
+        <p><strong>Adresse:</strong> @(Model.EmployeeInfo.Address)</p>
+        <p><strong>Stillingsbetegnelse:</strong> @(Model.EmployeeInfo.Position)</p>
+        <p><strong>Arbejdstid:</strong> @(Model.EmployeeInfo.WorkHours)</p>
+        <p><strong>Institution:</strong> @(Model.EmployeeInfo.Institution)</p>
+
+        <form method="post">
+            <input type="hidden" asp-for="CurrentStep" />
+            <button type="submit">Opret Medarbejder</button>
+        </form>
+    </div>
+}
+
+@* @page
+@model SDLoenSystem.Pages.EmployeeFlow.MultiStepFormModel
+
+<h2>Opret Ny Medarbejder</h2>
+
+<!-- Fanemenu -->
+<div>
+    <ul class="tab-navigation">
+        <li class="@(Model.CurrentStep == 1 ? "active" : "disabled")">Dato</li>
+        <li class="@(Model.CurrentStep == 2 ? "active" : "disabled")">Person</li>
+        <li class="@(Model.CurrentStep == 3 ? "active" : "disabled")">Ansættelse</li>
+        <li class="@(Model.CurrentStep == 4 ? "active" : "disabled")">Bekræft</li>
+    </ul>
+</div>
+
+<!-- Formulartrin -->
+@if (Model.CurrentStep == 1)
+{
+    <h3>Trin 1: Dato</h3>
+    <form method="post">
+        <input type="hidden" name="step" value="1" />
+        <label>Ansættelsesdato:</label>
+        <input type="date" asp-for="EmployeeInfo.EmploymentDate" required />
+        <label>CPR-Nummer:</label>
+        <input type="text" asp-for="EmployeeInfo.CPRNumber" required />
+        <button type="submit">Næste</button>
+    </form>
+}
+else if (Model.CurrentStep == 2)
+{
+    <h3>Trin 2: Person</h3>
+    <form method="post">
+        <input type="hidden" name="step" value="2" />
+        <label>Fornavn:</label>
+        <input type="text" asp-for="EmployeeInfo.FirstName" required />
+        <label>Efternavn:</label>
+        <input type="text" asp-for="EmployeeInfo.LastName" required />
+        <label>Adresse:</label>
+        <input type="text" asp-for="EmployeeInfo.Address" />
+        <button type="submit">Næste</button>
+    </form>
+}
+else if (Model.CurrentStep == 3)
+{
+    <h3>Trin 3: Ansættelse</h3>
+    <form method="post">
+        <input type="hidden" asp-for="CurrentStep" value="@Model.CurrentStep" />
+        <label>Stillingsbetegnelse:</label>
+        <input type="text" asp-for="EmployeeInfo.Position" />
+        <label>Arbejdstid:</label>
+        <input type="number" asp-for="EmployeeInfo.WorkHours" />
+        <label>Institution:</label>
+        <input type="text" asp-for="EmployeeInfo.Institution" />
+        <button type="submit" name="step" value="3">Næste</button>
+    </form>
+}
+@if (Model.CurrentStep == 4)
+{
+    <h3>Trin 4: Bekræft</h3>
+    <div>
+        <p><strong>Ansættelsesdato:</strong> @(TempData["EmploymentDate"] ?? "Ikke angivet")</p>
+        <p><strong>CPR-Nummer:</strong> @(TempData["CPRNumber"] ?? "Ikke angivet")</p>
+        <p><strong>Fornavn:</strong> @(TempData["FirstName"] ?? "Ikke angivet")</p>
+        <p><strong>Efternavn:</strong> @(TempData["LastName"] ?? "Ikke angivet")</p>
+        <p><strong>Adresse:</strong> @(TempData["Address"] ?? "Ikke angivet")</p>
+        <p><strong>Stillingsbetegnelse:</strong> @(TempData["Position"] ?? "Ikke angivet")</p>
+        <p><strong>Arbejdstid:</strong> @(TempData["WorkHours"] ?? "Ikke angivet")</p>
+        <p><strong>Institution:</strong> @(TempData["Institution"] ?? "Ikke angivet")</p>
+
+        <form method="post">
+            <button type="submit" name="step" value="4">Opret Medarbejder</button>
+        </form>
+    </div>
+}
+ *@
