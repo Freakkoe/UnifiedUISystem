@@ -6,13 +6,13 @@ namespace SDLoenSystem.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "CPR-Nummer er påkrævet")]
         public string CPRNumber { get; set; }
 
-        [Required]
+        //[Required]
         public string FirstName { get; set; }
 
-        [Required]
+        //[Required]
         public string LastName { get; set; }
 
         public string Address { get; set; }
@@ -24,7 +24,7 @@ namespace SDLoenSystem.Models
         public string MobilePhone { get; set; }
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Ansættelsesdato er påkrævet")]
         public DateTime EmploymentDate { get; set; }
         public DateTime? EndDate { get; set; }
         public decimal WorkHours { get; set; }

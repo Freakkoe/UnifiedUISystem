@@ -34,11 +34,28 @@ namespace SDLoenSystem.Pages.EmployeeFlow
             Console.WriteLine($"EmploymentDate: {EmployeeInfo?.EmploymentDate}");
             Console.WriteLine($"CPRNumber: {EmployeeInfo?.CPRNumber}");
 
-            if (!ModelState.IsValid)
+            if (CurrentStep == 1)
             {
-                Console.WriteLine("ModelState is invalid");
-                return Page();
+                if (string.IsNullOrEmpty(EmployeeInfo.CPRNumber) || EmployeeInfo.EmploymentDate == DateTime.MinValue)
+                {
+                    ModelState.AddModelError("", "Ansættelsedato og CPR-Nummer skal udfyldes.");
+                    return Page();
+                }
             }
+            else if (CurrentStep == 2)
+            {
+                if (string.IsNullOrEmpty(EmployeeInfo.FirstName) || string.IsNullOrEmpty(EmployeeInfo.LastName))
+                {
+                    ModelState.AddModelError("", "fornavn og efternavn skal udfyldes");
+                    return Page();
+                }
+            }
+
+            //if (!ModelState.IsValid)
+            //{
+            //    Console.WriteLine("ModelState is invalid");
+            //    return Page();
+            //}
 
             // Avancerer trin
             CurrentStep++;
