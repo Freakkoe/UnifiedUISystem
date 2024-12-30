@@ -2,6 +2,75 @@
 @model SofdCoreSystem.Pages.AccountCreation.IndexModel
 
 @{
+    ViewData["Title"] = "Medarbejderoversigt";
+}
+
+<h2>Medarbejderoversigt</h2>
+
+<!-- Opret Ny Medarbejder -->
+<div class="mb-3 text-end">
+    <a asp-page="./Create" class="btn btn-success">Opret Ny Medarbejder</a>
+</div>
+
+
+<!-- Søgefelt -->
+<form method="get" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="SearchTerm" value="@Model.SearchTerm" class="form-control" placeholder="Søg efter navn, jobtype eller stilling..." />
+        <button type="submit" class="btn btn-primary">Søg</button>
+    </div>
+</form>
+
+<!-- Tabel -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Fornavn</th>
+            <th>Efternavn</th>
+            <th>Stilling</th>
+            <th>Jobtype</th>
+            <th>Arbejdstimer</th>
+            <th>Startdato</th>
+            <th>Handlinger</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Accounts != null && Model.Accounts.Count > 0)
+        {
+            foreach (var account in Model.Accounts)
+            {
+                <tr>
+                    <td>@account.FirstName</td>
+                    <td>@account.LastName</td>
+                    <td>@account.Position</td>
+                    <td>@account.JobType</td>
+                    <td>@account.WorkHours</td>
+                    <td>@account.StartDate.ToShortDateString()</td>
+                    <td>
+                        <a asp-page="./Details" asp-route-id="@account.Id" class="btn btn-info btn-sm">Detaljer</a>
+                        <a asp-page="./Edit" asp-route-id="@account.Id" class="btn btn-warning btn-sm">Rediger</a>
+                        <a asp-page="./Delete" asp-route-id="@account.Id" class="btn btn-danger btn-sm">Slet</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7" class="text-center">Ingen medarbejdere fundet.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<!-- Totalt antal medarbejdere -->
+<p>Totalt antal medarbejdere: @Model.Accounts.Count()</p>
+
+@* @page
+@model SofdCoreSystem.Pages.AccountCreation.IndexModel
+
+@{
     ViewData["Title"] = "Index";
 }
 
@@ -88,3 +157,4 @@
 }
     </tbody>
 </table>
+ *@

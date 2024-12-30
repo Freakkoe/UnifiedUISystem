@@ -34,6 +34,9 @@ namespace SofdCoreSystem.Models
 
         public DateTime? LastUpdated { get; set; } // Sidst opdateret
 
+
+        public ICollection<Relation> Relations { get; set; }
+
         public AccountCreation()
         {
             
