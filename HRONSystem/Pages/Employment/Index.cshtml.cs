@@ -19,7 +19,7 @@ namespace HRONSystem.Pages.Employment
             _context = context;
         }
 
-        public IList<Models.Employment> Employment { get;set; } = default!;
+        public IList<Models.Employment> Employment { get; set; } = default!;
 
         public async Task OnGetAsync()
         {

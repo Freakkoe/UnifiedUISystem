@@ -9,19 +9,19 @@ using Microsoft.EntityFrameworkCore;
 using HRONSystem.Data;
 using HRONSystem.Models;
 
-namespace HRONSystem.Pages.Employment
+namespace HRONSystem.Pages.Jobs
 {
     public class EditModel : PageModel
     {
-        private readonly HRONSystem.Data.HRONDbContext _context;
+        private readonly HRONSystem.Data.HRONNewDbContext _context;
 
-        public EditModel(HRONSystem.Data.HRONDbContext context)
+        public EditModel(HRONSystem.Data.HRONNewDbContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Models.Employment Employment { get; set; } = default!;
+        public JobAdvert JobAdvert { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,12 +30,12 @@ namespace HRONSystem.Pages.Employment
                 return NotFound();
             }
 
-            var employment = await _context.Employment.FirstOrDefaultAsync(m => m.EmploymentID == id);
-            if (employment == null)
+            var jobadvert =  await _context.JobAdverts.FirstOrDefaultAsync(m => m.Id == id);
+            if (jobadvert == null)
             {
                 return NotFound();
             }
-            Employment = employment;
+            JobAdvert = jobadvert;
             return Page();
         }
 
@@ -48,7 +48,7 @@ namespace HRONSystem.Pages.Employment
                 return Page();
             }
 
-            _context.Attach(Employment).State = EntityState.Modified;
+            _context.Attach(JobAdvert).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +56,7 @@ namespace HRONSystem.Pages.Employment
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!EmploymentExists(Employment.EmploymentID))
+                if (!JobAdvertExists(JobAdvert.Id))
                 {
                     return NotFound();
                 }
@@ -69,9 +69,9 @@ namespace HRONSystem.Pages.Employment
             return RedirectToPage("./Index");
         }
 
-        private bool EmploymentExists(int id)
+        private bool JobAdvertExists(int id)
         {
-            return _context.Employment.Any(e => e.EmploymentID == id);
+            return _context.JobAdverts.Any(e => e.Id == id);
         }
     }
 }
