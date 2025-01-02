@@ -1,4 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using UnifiedUISystem.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Adds DbContexts for each database
+builder.Services.AddDbContext<HRONNewDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("HRONConnection")));
+builder.Services.AddDbContext<SDLOENDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SDLOENConnection")));
+builder.Services.AddDbContext<SofdCoreDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SofdCoreConnection")));
 
 // Add services to the container.
 builder.Services.AddRazorPages();

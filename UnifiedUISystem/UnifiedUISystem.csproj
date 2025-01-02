@@ -20,4 +20,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HRONSystem\HRONSystem.csproj" />
+    <ProjectReference Include="..\SDLoenSystem\SDLoenSystem.csproj" />
+    <ProjectReference Include="..\SofdCoreSystem\SofdCoreSystem.csproj" />
+  </ItemGroup>
+
 </Project>

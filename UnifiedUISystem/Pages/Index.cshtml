@@ -1,10 +1,74 @@
 ﻿@page
-@model IndexModel
-@{
-    ViewData["Title"] = "Home page";
-}
+@model UnifiedUISystem.Pages.IndexModel
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Unified UI - Oversigt</h1>
+
+<!-- HR-ON Data -->
+<h2>HR-ON Jobopslag</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Titel</th>
+            <th>Publiceringsdato</th>
+            <th>Ansvarlig</th>
+            <th>Afdeling</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var job in Model.JobAdverts)
+        {
+            <tr>
+                <td>@job.JobTitle</td>
+                <td>@job.PublishingDate.ToShortDateString()</td>
+                <td>@job.Responsible</td>
+                <td>@job.Department</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- SofdCore Data -->
+<h2>SofdCore Medarbejdere</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Fornavn</th>
+            <th>Efternavn</th>
+            <th>Jobtype</th>
+            <th>Startdato</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var account in Model.Accounts)
+        {
+            <tr>
+                <td>@account.FirstName</td>
+                <td>@account.LastName</td>
+                <td>@account.JobType</td>
+                <td>@account.StartDate.ToShortDateString() ?? "N/A"</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- SD-Løn Data -->
+<h2>SD-Løn Ansættelser</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>CPR-Nummer</th>
+            <th>Stillingsbetegnelse</th>
+            <th>Arbejdstimer</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model.Employees)
+        {
+            <tr>
+                <td>@employee.CPRNumber</td>
+                <td>@employee.Position</td>
+                <td>@employee.WorkHours</td>
+            </tr>
+        }
+    </tbody>
+</table>
