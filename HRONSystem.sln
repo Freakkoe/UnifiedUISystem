@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDLoenSystem", "SDLoenSyste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnifiedUISystem", "UnifiedUISystem\UnifiedUISystem.csproj", "{254B7745-153D-4113-A0FF-B15585EF9A5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnifiedUITests", "UnifiedUITests\UnifiedUITests.csproj", "{2EC636C0-2FB4-45CB-AFF3-077328B5911E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{254B7745-153D-4113-A0FF-B15585EF9A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{254B7745-153D-4113-A0FF-B15585EF9A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{254B7745-153D-4113-A0FF-B15585EF9A5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EC636C0-2FB4-45CB-AFF3-077328B5911E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EC636C0-2FB4-45CB-AFF3-077328B5911E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EC636C0-2FB4-45CB-AFF3-077328B5911E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EC636C0-2FB4-45CB-AFF3-077328B5911E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
