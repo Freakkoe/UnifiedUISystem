@@ -1,0 +1,65 @@
+﻿@page
+@model UnifiedUISystem.Pages.HRON.CreateModel
+
+<h1>Opret ny jobannonce</h1>
+
+<form method="post">
+    <div>
+        <label asp-for="JobAdvert.JobTitle"></label>
+        <input asp-for="JobAdvert.JobTitle" class="form-control" />
+        <span asp-validation-for="JobAdvert.JobTitle" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="JobAdvert.Department"></label>
+        <input asp-for="JobAdvert.Department" class="form-control" />
+        <span asp-validation-for="JobAdvert.Department" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="JobAdvert.PublishingDate"></label>
+        <input asp-for="JobAdvert.PublishingDate" type="date" class="form-control" />
+        <span asp-validation-for="JobAdvert.PublishingDate" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="JobAdvert.ApplicationDeadline"></label>
+        <input asp-for="JobAdvert.ApplicationDeadline" type="date" class="form-control" />
+        <span asp-validation-for="JobAdvert.ApplicationDeadline" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="JobAdvert.Media"></label>
+        <input asp-for="JobAdvert.Media" class="form-control" />
+        <span asp-validation-for="JobAdvert.Media" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="JobAdvert.Status"></label>
+        <input asp-for="JobAdvert.Status" class="form-control" />
+        <span asp-validation-for="JobAdvert.Status" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="JobAdvert.Responsible"></label>
+        <input asp-for="JobAdvert.Responsible" class="form-control" />
+        <span asp-validation-for="JobAdvert.Responsible" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="JobAdvert.Views"></label>
+        <input asp-for="JobAdvert.Views" type="number" class="form-control" />
+        <span asp-validation-for="JobAdvert.Views" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="JobAdvert.Applications"></label>
+        <input asp-for="JobAdvert.Applications" type="number" class="form-control" />
+        <span asp-validation-for="JobAdvert.Applications" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="JobAdvert.Comments"></label>
+        <textarea asp-for="JobAdvert.Comments" class="form-control"></textarea>
+        <span asp-validation-for="JobAdvert.Comments" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="JobAdvert.IsArchived"></label>
+        <input asp-for="JobAdvert.IsArchived" type="checkbox" />
+        <span asp-validation-for="JobAdvert.IsArchived" class="text-danger"></span>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Opret</button>
+    </div>
+</form>

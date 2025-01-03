@@ -1,74 +1,120 @@
 ﻿@page
 @model UnifiedUISystem.Pages.IndexModel
 
-<h1>Unified UI - Oversigt</h1>
+@{
+    ViewData["Title"] = "Unified UI";
+}
 
-<!-- HR-ON Data -->
-<h2>HR-ON Jobopslag</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Titel</th>
-            <th>Publiceringsdato</th>
-            <th>Ansvarlig</th>
-            <th>Afdeling</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var job in Model.JobAdverts)
-        {
-            <tr>
-                <td>@job.JobTitle</td>
-                <td>@job.PublishingDate.ToShortDateString()</td>
-                <td>@job.Responsible</td>
-                <td>@job.Department</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<h1 class="text-center">Unified User Interface</h1>
 
-<!-- SofdCore Data -->
-<h2>SofdCore Medarbejdere</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Fornavn</th>
-            <th>Efternavn</th>
-            <th>Jobtype</th>
-            <th>Startdato</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var account in Model.Accounts)
-        {
-            <tr>
-                <td>@account.FirstName</td>
-                <td>@account.LastName</td>
-                <td>@account.JobType</td>
-                <td>@account.StartDate.ToShortDateString() ?? "N/A"</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="container mt-4">
+    <!-- Faneblade -->
+    <ul class="nav nav-tabs" id="dataTabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="hron-tab" data-bs-toggle="tab" href="#hron" role="tab" aria-controls="hron" aria-selected="true">HR-ON: Job Listings</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="sofdcore-tab" data-bs-toggle="tab" href="#sofdcore" role="tab" aria-controls="sofdcore" aria-selected="false">SofdCore: Employee Accounts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="sdloen-tab" data-bs-toggle="tab" href="#sdloen" role="tab" aria-controls="sdloen" aria-selected="false">SD-Løn: Employee Records</a>
+        </li>
+    </ul>
 
-<!-- SD-Løn Data -->
-<h2>SD-Løn Ansættelser</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>CPR-Nummer</th>
-            <th>Stillingsbetegnelse</th>
-            <th>Arbejdstimer</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var employee in Model.Employees)
-        {
-            <tr>
-                <td>@employee.CPRNumber</td>
-                <td>@employee.Position</td>
-                <td>@employee.WorkHours</td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <!-- Indhold for hver fane -->
+    <div class="tab-content" id="dataTabsContent">
+        <!-- HR-ON -->
+        <div class="tab-pane fade show active" id="hron" role="tabpanel" aria-labelledby="hron-tab">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Job Title</th>
+                        <th>Department</th>
+                        <th>Publishing Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data for HR-ON -->
+                    @foreach (var job in Model.JobAdverts)
+                    {
+                        <tr>
+                            <td>@job.JobTitle</td>
+                            <td>@job.Department</td>
+                            <td>@job.PublishingDate.ToShortDateString()</td>
+                            <td>
+                                <a class="btn btn-info btn-sm" href="#">Details</a>
+                                <a class="btn btn-warning btn-sm" href="#">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <a asp-page="/HRON/Create" class="btn btn-primary">Opret Ny Jobannoce</a>
+            </table>
+        </div>
+
+        <!-- SofdCore -->
+        <div class="tab-pane fade" id="sofdcore" role="tabpanel" aria-labelledby="sofdcore-tab">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Position</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data for SofdCore -->
+                    @foreach (var account in Model.Accounts)
+                    {
+                        <tr>
+                            <td>@account.FirstName</td>
+                            <td>@account.LastName</td>
+                            <td>@account.Position</td>
+                            <td>
+                                <a class="btn btn-info btn-sm" href="#">Details</a>
+                                <a class="btn btn-warning btn-sm" href="#">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SD-Løn -->
+        <div class="tab-pane fade" id="sdloen" role="tabpanel" aria-labelledby="sdloen-tab">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>CPR Number</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Position</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data for SD-Løn -->
+                    @foreach (var employee in Model.Employees)
+                    {
+                        <tr>
+                            <td>@employee.CPRNumber</td>
+                            <td>@employee.FirstName</td>
+                            <td>@employee.LastName</td>
+                            <td>@employee.Position</td>
+                            <td>
+                                <a class="btn btn-info btn-sm" href="#">Details</a>
+                                <a class="btn btn-warning btn-sm" href="#">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
