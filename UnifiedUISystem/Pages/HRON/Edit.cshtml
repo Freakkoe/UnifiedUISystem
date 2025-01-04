@@ -1,0 +1,71 @@
+﻿@page "{id:int}"
+@model UnifiedUISystem.Pages.HRON.EditModel
+
+<h2>Rediger Jobannonce</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="JobAdvert.Id" />
+
+    <div class="form-group">
+        <label asp-for="JobAdvert.JobTitle"></label>
+        <input asp-for="JobAdvert.JobTitle" class="form-control" />
+        <span asp-validation-for="JobAdvert.JobTitle" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="JobAdvert.PublishingDate"></label>
+        <input asp-for="JobAdvert.PublishingDate" type="date" class="form-control" />
+        <span asp-validation-for="JobAdvert.PublishingDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="JobAdvert.ApplicationDeadline"></label>
+        <input asp-for="JobAdvert.ApplicationDeadline" type="date" class="form-control" />
+        <span asp-validation-for="JobAdvert.ApplicationDeadline" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="JobAdvert.Media"></label>
+        <input asp-for="JobAdvert.Media" class="form-control" />
+        <span asp-validation-for="JobAdvert.Media" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="JobAdvert.Status"></label>
+        <select asp-for="JobAdvert.Status" class="form-control">
+            <option value="Active">Active</option>
+            <option value="Closed">Closed</option>
+            <option value="Archived">Archived</option>
+        </select>
+        <span asp-validation-for="JobAdvert.Status" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="JobAdvert.IsArchived"></label>
+        <input type="checkbox" asp-for="JobAdvert.IsArchived" class="form-check-input" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="JobAdvert.Responsible"></label>
+        <input asp-for="JobAdvert.Responsible" class="form-control" />
+        <span asp-validation-for="JobAdvert.Responsible" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="JobAdvert.Department"></label>
+        <input asp-for="JobAdvert.Department" class="form-control" />
+        <span asp-validation-for="JobAdvert.Department" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="JobAdvert.Comments"></label>
+        <textarea asp-for="JobAdvert.Comments" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Gem ændringer</button>
+    <a asp-page="../Index" class="btn btn-secondary">Annuller</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

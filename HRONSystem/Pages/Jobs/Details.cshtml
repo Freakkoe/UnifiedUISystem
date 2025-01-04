@@ -53,12 +53,12 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.JobAdvert.Department)
         </dd>
-        <dt class="col-sm-2">
+        @* <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.JobAdvert.Views)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.JobAdvert.Views)
-        </dd>
+        </dd *@>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.JobAdvert.Applications)
         </dt>
@@ -72,6 +72,9 @@
             @Html.DisplayFor(model => model.JobAdvert.Comments)
         </dd>
     </dl>
+</div>
+<div>
+    <p><strong>Visninger:</strong> @Model.JobAdvert.Views</p>
 </div>
 <div class="details-actions">
     <a asp-page="./Edit" asp-route-id="@Model.JobAdvert.Id" class="btn btn-edit">✏️ Rediger</a>

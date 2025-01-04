@@ -1,0 +1,76 @@
+﻿@page
+@model UnifiedUISystem.Pages.SDLoen.CreateModel
+
+<h2>Opret Medarbejder</h2>
+
+<form method="post">
+    <div>
+        <label>Ansættelsesdato:</label>
+        <input type="date" asp-for="EmployeeInfo.EmploymentDate" required />
+    </div>
+    <div>
+        <label>CPR-Nummer:</label>
+        <input type="text" asp-for="EmployeeInfo.CPRNumber" required />
+    </div>
+    <div>
+        <label>Fornavn:</label>
+        <input type="text" asp-for="EmployeeInfo.FirstName" required />
+    </div>
+    <div>
+        <label>Efternavn:</label>
+        <input type="text" asp-for="EmployeeInfo.LastName" required />
+    </div>
+    <div>
+        <label>Adresse:</label>
+        <input type="text" asp-for="EmployeeInfo.Address" />
+    </div>
+    <div>
+        <label>Stilling:</label>
+        <input type="text" asp-for="EmployeeInfo.Position" />
+    </div>
+    <div>
+        <label>Arbejdstimer:</label>
+        <input type="number" asp-for="EmployeeInfo.WorkHours" />
+    </div>
+    <div>
+        <label>Institution:</label>
+        <input type="text" asp-for="EmployeeInfo.Institution" />
+    </div>
+    <div>
+        <label>Jobtype:</label>
+        <input type="text" asp-for="EmployeeInfo.JobType" />
+    </div>
+    <div>
+        <label>Afdeling:</label>
+        <input type="text" asp-for="EmployeeInfo.Department" />
+    </div>
+    <div>
+        <label>Autorisation:</label>
+        <input type="text" asp-for="EmployeeInfo.AuthorizationRequirement" />
+    </div>
+    <div>
+        <label>Arbejdstelefon:</label>
+        <input type="text" asp-for="EmployeeInfo.PhoneWork" />
+    </div>
+    <div>
+        <label>Privat telefon:</label>
+        <input type="text" asp-for="EmployeeInfo.PhonePrivate" />
+    </div>
+    <div>
+        <label>Arbejdsmail:</label>
+        <input type="email" asp-for="EmployeeInfo.EmailWork" />
+    </div>
+    <div>
+        <label>Privat mail:</label>
+        <input type="email" asp-for="EmployeeInfo.EmailPrivate" />
+    </div>
+    <div>
+        <label>Startdato:</label>
+        <input type="date" asp-for="EmployeeInfo.StartDate" />
+    </div>
+    <div>
+        <label>Slutdato:</label>
+        <input type="date" asp-for="EmployeeInfo.EndDate" />
+    </div>
+    <button type="submit">Gem Medarbejder</button>
+</form>

@@ -1,0 +1,18 @@
+﻿@page "{id:int?}"
+@model UnifiedUISystem.Pages.SDLoen.DeleteModel
+
+<h2>Bekræft sletning</h2>
+
+<p>Er du sikker på, at du vil slette denne medarbejder?</p>
+
+<div>
+    <strong>Navn:</strong> @Model.EmployeeInfo.FirstName @Model.EmployeeInfo.LastName
+</div>
+<div>
+    <strong>CPR-Nummer:</strong> @Model.EmployeeInfo.CPRNumber
+</div>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Slet</button>
+    <a asp-page="/SDLoen/Index" class="btn btn-secondary">Annuller</a>
+</form>

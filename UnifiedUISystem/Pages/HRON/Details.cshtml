@@ -1,0 +1,25 @@
+﻿@page "{id:int}"
+@model UnifiedUISystem.Pages.HRON.DetailsModel
+@{
+    ViewData["Title"] = "Job Details";
+}
+
+<h1>Detaljer for Job</h1>
+
+<div>
+    <h3>@Model.JobAdvert.JobTitle</h3>
+    <p><strong>Publiceringsdato:</strong> @Model.JobAdvert.PublishingDate.ToShortDateString()</p>
+    <p><strong>Ansøgningsfrist:</strong> @Model.JobAdvert.ApplicationDeadline.ToShortDateString()</p>
+    <p><strong>Medie:</strong> @Model.JobAdvert.Media</p>
+    <p><strong>Status:</strong> @Model.JobAdvert.Status</p>
+    <p><strong>Ansvarlig:</strong> @Model.JobAdvert.Responsible</p>
+    <p><strong>Afdeling:</strong> @Model.JobAdvert.Department</p>
+    <p><strong>Visninger:</strong> @Model.JobAdvert.Views</p>
+    <p><strong>Ansøgninger:</strong> @Model.JobAdvert.Applications</p>
+    <p><strong>Kommentarer:</strong> @Model.JobAdvert.Comments</p>
+    <p><strong>Arkiveret:</strong> @(Model.JobAdvert.IsArchived ? "Ja" : "Nej")</p>
+</div>
+
+<p>
+    <a asp-page="/Index">Tilbage</a>
+</p>

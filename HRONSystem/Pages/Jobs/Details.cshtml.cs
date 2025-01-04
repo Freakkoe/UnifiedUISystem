@@ -34,6 +34,9 @@ namespace HRONSystem.Pages.Jobs
             {
                 JobAdvert = jobadvert;
 
+                jobadvert.Views++;
+                await _context.SaveChangesAsync();
+
                 return Page();
             }
 

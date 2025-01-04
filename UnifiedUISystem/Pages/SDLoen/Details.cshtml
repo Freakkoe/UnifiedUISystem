@@ -1,0 +1,30 @@
+﻿@page "{id:int}"
+@model UnifiedUISystem.Pages.SDLoen.DetailsModel
+
+<h2>Medarbejder Detaljer</h2>
+
+<div>
+    <p><strong>Ansættelsesdato:</strong> @Model.EmployeeInfo.EmploymentDate</p>
+    <p><strong>CPR-Nummer:</strong> @Model.EmployeeInfo.CPRNumber</p>
+    <p><strong>Fornavn:</strong> @Model.EmployeeInfo.FirstName</p>
+    <p><strong>Efternavn:</strong> @Model.EmployeeInfo.LastName</p>
+    <p><strong>Adresse:</strong> @Model.EmployeeInfo.Address</p>
+    <p><strong>Stilling:</strong> @Model.EmployeeInfo.Position</p>
+    <p><strong>Arbejdstimer:</strong> @Model.EmployeeInfo.WorkHours</p>
+    <p><strong>Institution:</strong> @Model.EmployeeInfo.Institution</p>
+    <p><strong>Jobtype:</strong> @Model.EmployeeInfo.JobType</p>
+    <p><strong>Afdeling:</strong> @Model.EmployeeInfo.Department</p>
+    <p><strong>Autorisation:</strong> @Model.EmployeeInfo.AuthorizationRequirement</p>
+    <p><strong>Arbejdstelefon:</strong> @Model.EmployeeInfo.PhoneWork</p>
+    <p><strong>Privat telefon:</strong> @Model.EmployeeInfo.PhonePrivate</p>
+    <p><strong>Arbejdsmail:</strong> @Model.EmployeeInfo.EmailWork</p>
+    <p><strong>Privat mail:</strong> @Model.EmployeeInfo.EmailPrivate</p>
+    <p><strong>Startdato:</strong> @Model.EmployeeInfo.StartDate?.ToShortDateString()</p>
+    <p><strong>Slutdato:</strong> @Model.EmployeeInfo.EndDate?.ToShortDateString()</p>
+    <p><strong>Oprettelsesdato:</strong> @Model.EmployeeInfo.CreationDate.ToShortDateString()</p>
+    <p><strong>Sidst opdateret:</strong> @Model.EmployeeInfo.LastUpdated?.ToShortDateString()</p>
+</div>
+
+<a asp-page="./Edit" asp-route-id="@Model.EmployeeInfo.Id" class="btn btn-primary">Rediger</a>
+<a asp-page="./Delete" asp-route-id="@Model.EmployeeInfo.Id" class="btn btn-danger">Slet</a>
+<a asp-page="../Index" class="btn btn-secondary">Tilbage</a>

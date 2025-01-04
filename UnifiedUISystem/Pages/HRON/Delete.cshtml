@@ -1,0 +1,17 @@
+﻿@page "{id:int}"
+@model UnifiedUISystem.Pages.HRON.DeleteModel
+
+<h2>Slet jobopslag</h2>
+<p>Er du sikker på, at du vil slette følgende jobopslag?</p>
+
+<div>
+    <p><strong>Jobtitel:</strong> @Model.JobAdvert.JobTitle</p>
+    <p><strong>Ansvarlig:</strong> @Model.JobAdvert.Responsible</p>
+    <p><strong>Afdeling:</strong> @Model.JobAdvert.Department</p>
+    <p><strong>Visninger:</strong> @Model.JobAdvert.Views</p>
+</div>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Slet</button>
+    <a asp-page="../Index" class="btn btn-secondary">Annuller</a>
+</form>

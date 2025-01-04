@@ -43,9 +43,9 @@
                             <td>@job.Department</td>
                             <td>@job.PublishingDate.ToShortDateString()</td>
                             <td>
-                                <a class="btn btn-info btn-sm" href="#">Details</a>
-                                <a class="btn btn-warning btn-sm" href="#">Edit</a>
-                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                                <a asp-page="/HRON/Details" asp-route-id="@job.Id" class="btn btn-info btn-sm">Details</a>
+                                <a asp-page="/HRON/Edit" asp-route-id="@job.Id" class="btn btn-warning btn-sm">Edit</a>
+                                <a asp-page="/HRON/Delete" asp-route-id="@job.Id" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>
                     }
@@ -106,13 +106,14 @@
                             <td>@employee.LastName</td>
                             <td>@employee.Position</td>
                             <td>
-                                <a class="btn btn-info btn-sm" href="#">Details</a>
-                                <a class="btn btn-warning btn-sm" href="#">Edit</a>
-                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                                <a asp-page="/SDLoen/Details" asp-route-id="@employee.Id" class="btn btn-info btn-sm">Details</a>
+                                <a asp-page="/SDLoen/Edit" asp-route-id="@employee.Id" class="btn btn-warning btn-sm">Edit</a>
+                                <a asp-page="/SDLoen/Delete" asp-route-id="@employee.Id" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>
                     }
                 </tbody>
+                <a asp-page="/SDLoen/Create" class="btn btn-primary">Opret Ny Medarbejder</a>
             </table>
         </div>
     </div>

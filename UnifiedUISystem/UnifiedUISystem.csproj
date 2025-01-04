@@ -26,4 +26,8 @@
     <ProjectReference Include="..\SofdCoreSystem\SofdCoreSystem.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\SofdCore\" />
+  </ItemGroup>
+
 </Project>

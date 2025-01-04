@@ -1,0 +1,87 @@
+﻿@page "{id:int}"
+@model UnifiedUISystem.Pages.SDLoen.EditModel
+
+<h2>Rediger Medarbejder</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="EmployeeInfo.Id"/>
+    
+    <div>
+        <label>Ansættelsesdato:</label>
+        <input type="text" asp-for="EmployeeInfo.EmploymentDate" class="form-control" />
+    </div>
+    <div>
+        <label>CPR-Nummer:</label>
+        <input type="text" asp-for="EmployeeInfo.CPRNumber" class="form-control" />
+    </div>
+    <div>
+        <label>Fornavn:</label>
+        <input type="text" asp-for="EmployeeInfo.FirstName" class="form-control" />
+    </div>
+    <div>
+        <label>Efternavn:</label>
+        <input type="text" asp-for="EmployeeInfo.LastName" class="form-control" />
+    </div>
+    <div>
+        <label>Adresse:</label>
+        <input type="text" asp-for="EmployeeInfo.Address" class="form-control" />
+    </div>
+    <div>
+        <label>Stilling:</label>
+        <input type="text" asp-for="EmployeeInfo.Position" class="form-control" />
+    </div>
+    <div>
+        <label>Arbejdstimer:</label>
+        <input type="number" asp-for="EmployeeInfo.WorkHours" class="form-control" />
+    </div>
+    <div>
+        <label>Institution:</label>
+        <input type="text" asp-for="EmployeeInfo.Institution" class="form-control" />
+    </div>
+    <div>
+        <label>Jobtype:</label>
+        <input type="text" asp-for="EmployeeInfo.JobType" class="form-control" />
+    </div>
+    <div>
+        <label>Afdeling:</label>
+        <input type="text" asp-for="EmployeeInfo.Department" class="form-control" />
+    </div>
+    <div>
+        <label>Autorisation:</label>
+        <input type="text" asp-for="EmployeeInfo.AuthorizationRequirement" class="form-control" />
+    </div>
+    <div>
+        <label>Arbejdstelefon:</label>
+        <input type="text" asp-for="EmployeeInfo.PhoneWork" class="form-control" />
+    </div>
+    <div>
+        <label>Privat telefon:</label>
+        <input type="text" asp-for="EmployeeInfo.PhonePrivate" class="form-control" />
+    </div>
+    <div>
+        <label>Arbejdsmail:</label>
+        <input type="email" asp-for="EmployeeInfo.EmailWork" class="form-control" />
+    </div>
+    <div>
+        <label>Privat mail:</label>
+        <input type="email" asp-for="EmployeeInfo.EmailPrivate" class="form-control" />
+    </div>
+    <div>
+        <label>Startdato:</label>
+        <input type="date" asp-for="EmployeeInfo.StartDate" class="form-control" />
+    </div>
+    <div>
+        <label>Slutdato:</label>
+        <input type="date" asp-for="EmployeeInfo.EndDate" class="form-control" />
+    </div>
+    <div>
+        <label>Oprettelsesdato:</label>
+        <input type="date" asp-for="EmployeeInfo.CreationDate" class="form-control" readonly />
+    </div>
+    <div>
+        <label>Sidst opdateret:</label>
+        <input type="date" asp-for="EmployeeInfo.LastUpdated" class="form-control" readonly />
+    </div>
+    <button type="submit" class="btn btn-primary">Gem ændringer</button>
+    <a asp-page="../Index" class="btn btn-secondary">Annuller</a>
+</form>
