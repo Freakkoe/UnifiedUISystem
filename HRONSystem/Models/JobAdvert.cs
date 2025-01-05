@@ -8,37 +8,43 @@ namespace HRONSystem.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Date is required")]
         [Display(Name = "Publiceringsdato")]
         public DateTime PublishingDate { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Date is required")]
         [Display(Name = "Ansøgningsfrist")]
         public DateTime ApplicationDeadline { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Title is required")]
         [Display(Name = "Jobtitel")]
         [StringLength(255)]
         public string JobTitle { get; set; }
 
+        [Required(ErrorMessage = "Media is required")]
         [Display(Name = "Medie")]
         public string Media { get; set; }
 
+        [Required(ErrorMessage = "Status is required")]
         [Display(Name = "Status")]
         public string Status { get; set; }
 
+        [Required(ErrorMessage = "Responsible is required")]
         [Display(Name = "Ansvarlig")]
         public string Responsible { get; set; }
 
+        [Required(ErrorMessage = "Department is required")]
         [Display(Name = "Afdeling")]
         public string Department { get; set; }
 
         [Display(Name = "Visninger")]
         public int Views { get; set; } = 0;
 
+        [Required(ErrorMessage = "Applications is required")]
         [Display(Name = "Ansøgninger")]
         public int Applications { get; set; } = 0;
 
+        [Required(ErrorMessage = "Comment is required")]
         [Display(Name = "Kommentarer")]
         public string Comments { get; set; }
 

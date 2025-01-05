@@ -51,7 +51,7 @@ namespace UnifiedUISystem.Pages.SDLoen
             _context.EmployeeInfos.Remove(employee);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("../Index");
+            return RedirectToPage("../Index", new { activeTab = "sdloen" });
         }
     }
 }

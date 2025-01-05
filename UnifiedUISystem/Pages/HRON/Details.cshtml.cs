@@ -25,8 +25,18 @@ namespace UnifiedUISystem.Pages.HRON
                 return NotFound();
             }
 
+            // Increment views count
             JobAdvert.Views++;
-            _context.SaveChanges();
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                // Log the error and redirect to a generic error page (optional)
+                Console.WriteLine($"Error incrementing views: {ex.Message}");
+                return RedirectToPage("/Error");
+            }
 
             return Page();
         }

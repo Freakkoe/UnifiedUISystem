@@ -32,7 +32,7 @@ namespace UnifiedUISystem.Pages.HRON
             _context.JobAdverts.Add(JobAdvert);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("../Index");
+            return RedirectToPage("../Index", new {activeTab = "hron"});
         }
     }
 }

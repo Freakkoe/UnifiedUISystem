@@ -24,12 +24,41 @@ namespace UnifiedUISystem.Pages
         public List<AccountCreation> Accounts { get; set; }
         public List<EmployeeInfo> Employees { get; set; }
 
-        public async Task OnGetAsync()
+        public bool ShowArchived { get; set; }
+        public string SearchTerm { get; set; }
+
+
+
+        public async Task OnGetAsync(string searchTerm, bool showArchived)
         {
+            SearchTerm = searchTerm;
+            ShowArchived = showArchived;
+
             // Hent data fra alle tre systemer
             JobAdverts = await _hronContext.JobAdverts.ToListAsync();
             Accounts = await _sofdCoreContext.AccountCreation.ToListAsync();
             Employees = await _sdloenContext.EmployeeInfos.ToListAsync();
+
+            var query = _hronContext.JobAdverts.AsQueryable();
+
+
+            // Filtrer baseret på søgeord
+            if (!string.IsNullOrWhiteSpace(SearchTerm))
+            {
+                query = query.Where(j => j.JobTitle.Contains(SearchTerm) ||
+                                         j.Media.Contains(SearchTerm) ||
+                                         j.Responsible.Contains(SearchTerm) ||
+                                         j.Department.Contains(SearchTerm));
+            }
+
+            // Filtrer aktive og arkiverede job
+            if (!ShowArchived)
+            {
+                query = query.Where(j => !j.IsArchived);
+            }
+
+            // Hent resultater fra databasen
+            JobAdverts = await query.ToListAsync();
         }
     }
 }

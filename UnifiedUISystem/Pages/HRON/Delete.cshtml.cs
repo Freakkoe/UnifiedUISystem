@@ -41,7 +41,7 @@ namespace UnifiedUISystem.Pages.HRON
             _context.JobAdverts.Remove(jobAdvert);
             _context.SaveChanges();
 
-            return RedirectToPage("../Index");
+            return RedirectToPage("../Index", new { activeTab = "hron" });
         }
     }
 }

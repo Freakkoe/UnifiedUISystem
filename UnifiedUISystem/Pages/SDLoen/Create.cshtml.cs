@@ -17,7 +17,19 @@ namespace UnifiedUISystem.Pages.SDLoen
         [BindProperty]
         public EmployeeInfo EmployeeInfo { get; set; }
 
-        public IActionResult OnPost()
+        public IActionResult OnGetAsync()
+        {
+            // Sæt standardværdier for ikke-obligatoriske felter
+            EmployeeInfo = new EmployeeInfo
+            {
+                //EmploymentDate = DateTime.Now, // FIX THIS - SHOULD BE STRING TO DATETIME OR DATETIME TO STRING......
+                CreationDate = DateTime.Now,
+                //StartDate = DateTime.Now, // Leave this for now!!!
+            };
+            return Page();
+        }
+
+        public IActionResult OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
@@ -27,7 +39,7 @@ namespace UnifiedUISystem.Pages.SDLoen
             _context.EmployeeInfos.Add(EmployeeInfo);
             _context.SaveChanges();
 
-            return RedirectToPage("../Index");
+            return RedirectToPage("../Index", new { activeTab = "sdloen" });
         }
     }
 }

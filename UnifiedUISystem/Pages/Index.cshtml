@@ -5,11 +5,11 @@
     ViewData["Title"] = "Unified UI";
 }
 
-<h1 class="text-center">Unified User Interface</h1>
+<h1 class="text-center my-4">Unified User Interface</h1>
 
-<div class="container mt-4">
+<div class="container">
     <!-- Faneblade -->
-    <ul class="nav nav-tabs" id="dataTabs" role="tablist">
+    <ul class="nav nav-tabs mb-4" id="dataTabs" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="hron-tab" data-bs-toggle="tab" href="#hron" role="tab" aria-controls="hron" aria-selected="true">HR-ON: Job Listings</a>
         </li>
@@ -25,7 +25,21 @@
     <div class="tab-content" id="dataTabsContent">
         <!-- HR-ON -->
         <div class="tab-pane fade show active" id="hron" role="tabpanel" aria-labelledby="hron-tab">
-            <table class="table">
+            <div class="d-flex justify-content-between mb-3">
+                <h4>HR-ON: Job Listings</h4>
+                <a asp-page="/HRON/Create" class="btn btn-primary">Opret Ny Jobannonce</a>
+            </div>
+            <form method="get" class="search-form">
+                <input type="text" name="SearchTerm" placeholder="Tilføj søgeord" value="@Model.SearchTerm" />
+                <button type="submit">Søg</button>
+            </form>
+            <form method="get" style="display: inline;">
+                <label>
+                    <input type="checkbox" name="ShowArchived" value="true" @(Model.ShowArchived ? "checked" : "") onchange="this.form.submit()" />
+                    Vis arkiverede jobannoncer
+                </label>
+            </form>
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Job Title</th>
@@ -35,7 +49,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Data for HR-ON -->
                     @foreach (var job in Model.JobAdverts)
                     {
                         <tr>
@@ -50,13 +63,16 @@
                         </tr>
                     }
                 </tbody>
-                <a asp-page="/HRON/Create" class="btn btn-primary">Opret Ny Jobannoce</a>
             </table>
         </div>
 
         <!-- SofdCore -->
         <div class="tab-pane fade" id="sofdcore" role="tabpanel" aria-labelledby="sofdcore-tab">
-            <table class="table">
+            <div class="d-flex justify-content-between mb-3">
+                <h4>SofdCore: Employee Accounts</h4>
+                <a asp-page="/SofdCore/Create" class="btn btn-primary">Opret Ny Bruger</a>
+            </div>
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>First Name</th>
@@ -66,7 +82,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Data for SofdCore -->
                     @foreach (var account in Model.Accounts)
                     {
                         <tr>
@@ -74,9 +89,9 @@
                             <td>@account.LastName</td>
                             <td>@account.Position</td>
                             <td>
-                                <a class="btn btn-info btn-sm" href="#">Details</a>
-                                <a class="btn btn-warning btn-sm" href="#">Edit</a>
-                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                                <a asp-page="/SofdCore/Details" asp-route-id="@account.Id" class="btn btn-info btn-sm">Details</a>
+                                <a asp-page="/SofdCore/Edit" asp-route-id="@account.Id" class="btn btn-warning btn-sm">Edit</a>
+                                <a asp-page="/SofdCore/Delete" asp-route-id="@account.Id" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>
                     }
@@ -86,7 +101,11 @@
 
         <!-- SD-Løn -->
         <div class="tab-pane fade" id="sdloen" role="tabpanel" aria-labelledby="sdloen-tab">
-            <table class="table">
+            <div class="d-flex justify-content-between mb-3">
+                <h4>SD-Løn: Employee Records</h4>
+                <a asp-page="/SDLoen/Create" class="btn btn-primary">Opret Ny Medarbejder</a>
+            </div>
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>CPR Number</th>
@@ -97,7 +116,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Data for SD-Løn -->
                     @foreach (var employee in Model.Employees)
                     {
                         <tr>
@@ -113,9 +131,35 @@
                         </tr>
                     }
                 </tbody>
-                <a asp-page="/SDLoen/Create" class="btn btn-primary">Opret Ny Medarbejder</a>
             </table>
         </div>
     </div>
 </div>
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const activeTab = urlParams.get('activeTab');
 
+            if (activeTab) {
+                const targetTab = document.querySelector(`[data-tab="${activeTab}"]`);
+                if (targetTab) {
+                    targetTab.classList.add('active');
+                    targetTab.setAttribute('aria-selected', 'true');
+
+                    const tabPane = document.getElementById(activeTab);
+                    if (tabPane) {
+                        tabPane.classList.add('show', 'active');
+                    }
+                }
+            } else {
+                // Default to HRON tab
+                const defaultTab = document.querySelector('[data-tab="hron"]');
+                if (defaultTab) {
+                    defaultTab.classList.add('active');
+                    defaultTab.setAttribute('aria-selected', 'true');
+                }
+            }
+        });
+    </script>
+}

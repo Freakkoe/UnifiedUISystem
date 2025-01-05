@@ -71,7 +71,7 @@ namespace UnifiedUISystem.Pages.SDLoen
             await _context.SaveChangesAsync();
 
             Console.WriteLine("Redirecting to ../Index");
-            return RedirectToPage("../Index");
+            return RedirectToPage("../Index", new { activeTab = "sdloen" });
         }
     }
 }
