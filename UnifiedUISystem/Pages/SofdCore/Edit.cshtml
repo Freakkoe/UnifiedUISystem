@@ -70,7 +70,7 @@
         <!-- Handling -->
         <div class="d-flex justify-content-between mt-4">
             <button type="submit" class="btn btn-primary">Gem Ændringer</button>
-            <a asp-page="../Index" class="btn btn-secondary">Annuller</a>
+            <a asp-page="../Index" asp-route-activeTab="sofdcore" class="btn btn-secondary">Annuller</a>
         </div>
     </form>
 </div>
@@ -78,3 +78,23 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+<style>
+    body {
+        padding-bottom: 70px; /* Tilføj plads til footer */
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #f8f9fa;
+        padding: 10px 0;
+        text-align: center;
+        border-top: 1px solid #e7e7e7;
+    }
+
+    .btn-secondary {
+        margin-top: 20px;
+    }
+</style>

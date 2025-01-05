@@ -9,22 +9,26 @@
 
 <div class="container">
     <!-- Faneblade -->
-    <ul class="nav nav-tabs mb-4" id="dataTabs" role="tablist">
+    <ul class="nav nav-tabs" id="dataTabs" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="hron-tab" data-bs-toggle="tab" href="#hron" role="tab" aria-controls="hron" aria-selected="true">HR-ON: Job Listings</a>
+            <a class="nav-link @(Request.Query["activeTab"] == "hron" || string.IsNullOrEmpty(Request.Query["activeTab"]) ? "active" : "")"
+               id="hron-tab" data-bs-toggle="tab" href="#hron" role="tab" aria-controls="hron" aria-selected="true" data-tab="hron">HR-ON: Job Listings</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="sofdcore-tab" data-bs-toggle="tab" href="#sofdcore" role="tab" aria-controls="sofdcore" aria-selected="false">SofdCore: Employee Accounts</a>
+            <a class="nav-link @(Request.Query["activeTab"] == "sofdcore" ? "active" : "")"
+               id="sofdcore-tab" data-bs-toggle="tab" href="#sofdcore" role="tab" aria-controls="sofdcore" aria-selected="false" data-tab="sofdcore">SofdCore: Employee Accounts</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="sdloen-tab" data-bs-toggle="tab" href="#sdloen" role="tab" aria-controls="sdloen" aria-selected="false">SD-Løn: Employee Records</a>
+            <a class="nav-link @(Request.Query["activeTab"] == "sdloen" ? "active" : "")"
+               id="sdloen-tab" data-bs-toggle="tab" href="#sdloen" role="tab" aria-controls="sdloen" aria-selected="false" data-tab="sdloen">SD-Løn: Employee Records</a>
         </li>
     </ul>
+
 
     <!-- Indhold for hver fane -->
     <div class="tab-content" id="dataTabsContent">
         <!-- HR-ON -->
-        <div class="tab-pane fade show active" id="hron" role="tabpanel" aria-labelledby="hron-tab">
+        <div class="tab-pane fade @(Request.Query["activeTab"] == "hron" || string.IsNullOrEmpty(Request.Query["activeTab"]) ? "show active" : "")" id="hron" role="tabpanel" aria-labelledby="hron-tab">
             <div class="d-flex justify-content-between mb-3">
                 <h4>HR-ON: Job Listings</h4>
                 <a asp-page="/HRON/Create" class="btn btn-primary">Opret Ny Jobannonce</a>
@@ -67,7 +71,7 @@
         </div>
 
         <!-- SofdCore -->
-        <div class="tab-pane fade" id="sofdcore" role="tabpanel" aria-labelledby="sofdcore-tab">
+        <div class="tab-pane fade @(Request.Query["activeTab"] == "sofdcore" ? "show active" : "")" id="sofdcore" role="tabpanel" aria-labelledby="sofdcore-tab">
             <div class="d-flex justify-content-between mb-3">
                 <h4>SofdCore: Employee Accounts</h4>
                 <a asp-page="/SofdCore/Create" class="btn btn-primary">Opret Ny Bruger</a>
@@ -100,7 +104,7 @@
         </div>
 
         <!-- SD-Løn -->
-        <div class="tab-pane fade" id="sdloen" role="tabpanel" aria-labelledby="sdloen-tab">
+        <div class="tab-pane fade @(Request.Query["activeTab"] == "sdloen" ? "show active" : "")" id="sdloen" role="tabpanel" aria-labelledby="sdloen-tab">
             <div class="d-flex justify-content-between mb-3">
                 <h4>SD-Løn: Employee Records</h4>
                 <a asp-page="/SDLoen/Create" class="btn btn-primary">Opret Ny Medarbejder</a>
@@ -138,26 +142,20 @@
 @section Scripts {
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const activeTab = urlParams.get('activeTab');
+            document.querySelectorAll('.nav-link').forEach(function (tab) {
+                tab.addEventListener('click', function (e) {
+                    const tabId = this.getAttribute('data-tab');
+                    const url = new URL(window.location);
+                    url.searchParams.set('activeTab', tabId);
+                    window.history.pushState({}, '', url);
+                });
+            });
 
+            const activeTab = new URLSearchParams(window.location.search).get('activeTab');
             if (activeTab) {
                 const targetTab = document.querySelector(`[data-tab="${activeTab}"]`);
                 if (targetTab) {
-                    targetTab.classList.add('active');
-                    targetTab.setAttribute('aria-selected', 'true');
-
-                    const tabPane = document.getElementById(activeTab);
-                    if (tabPane) {
-                        tabPane.classList.add('show', 'active');
-                    }
-                }
-            } else {
-                // Default to HRON tab
-                const defaultTab = document.querySelector('[data-tab="hron"]');
-                if (defaultTab) {
-                    defaultTab.classList.add('active');
-                    defaultTab.setAttribute('aria-selected', 'true');
+                    targetTab.click();
                 }
             }
         });
