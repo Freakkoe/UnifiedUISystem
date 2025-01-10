@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Services.AddDbContext<HRONDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))); //OLD DATABASE - WORKING
-builder.Services.AddDbContext<HRONNewDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("HRONNewConnection"))); //NEW DATABASE - TESTING
+//builder.Services.AddDbContext<HRONDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))); //OLD DATABASE - WORKING (DONT USE!!)
+builder.Services.AddDbContext<HRONNewDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("HRONNewConnection"))); //NEW DATABASE - WORKING
 
 
 // Add services to the container.
