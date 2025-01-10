@@ -1,0 +1,86 @@
+﻿@page
+@model HRONSystem.Pages.Jobs.CreateModel
+
+        @{
+        ViewData["Title"] = "Create";
+        }
+        
+        <h1>Create</h1>
+        
+    <h4>JobAdvert</h4>
+    <hr />
+    <div class="row">
+    <div class="col-md-4">
+    <form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="JobAdvert.PublishingDate" class="control-label"></label>
+                <input asp-for="JobAdvert.PublishingDate" class="form-control" />
+                <span asp-validation-for="JobAdvert.PublishingDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="JobAdvert.ApplicationDeadline" class="control-label"></label>
+                <input asp-for="JobAdvert.ApplicationDeadline" class="form-control" />
+                <span asp-validation-for="JobAdvert.ApplicationDeadline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="JobAdvert.JobTitle" class="control-label"></label>
+                <input asp-for="JobAdvert.JobTitle" class="form-control" />
+                <span asp-validation-for="JobAdvert.JobTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JobAdvert.Media" class="control-label"></label>
+                <input asp-for="JobAdvert.Media" class="form-control" />
+                <span asp-validation-for="JobAdvert.Media" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JobAdvert.Status" class="control-label"></label>
+                <input asp-for="JobAdvert.Status" class="form-control" />
+                <span asp-validation-for="JobAdvert.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JobAdvert.Responsible" class="control-label"></label>
+                <input asp-for="JobAdvert.Responsible" class="form-control" />
+                <span asp-validation-for="JobAdvert.Responsible" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JobAdvert.Department" class="control-label"></label>
+                <input asp-for="JobAdvert.Department" class="form-control" />
+                <span asp-validation-for="JobAdvert.Department" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JobAdvert.Views" class="control-label"></label>
+                <input asp-for="JobAdvert.Views" class="form-control" />
+                <span asp-validation-for="JobAdvert.Views" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JobAdvert.Applications" class="control-label"></label>
+                <input asp-for="JobAdvert.Applications" class="form-control" />
+                <span asp-validation-for="JobAdvert.Applications" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JobAdvert.Comments" class="control-label"></label>
+                <input asp-for="JobAdvert.Comments" class="form-control" />
+                <span asp-validation-for="JobAdvert.Comments" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+            <div class="form-group">
+                <label asp-for="JobAdvert.IsArchived"></label>
+                <input asp-for="JobAdvert.IsArchived" type="checkbox" class="form-check-input" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

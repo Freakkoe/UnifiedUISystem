@@ -1,0 +1,83 @@
+﻿@page
+@model SDLoenSystem.Pages.EmployeeInfo.CreateModel
+
+        @{
+        ViewData["Title"] = "Create";
+        }
+        
+        <h1>Create</h1>
+        
+    <h4>EmployeeInfo</h4>
+    <hr />
+    <div class="row">
+    <div class="col-md-4">
+    <form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="EmployeeInfo.CPRNumber" class="control-label"></label>
+                <input asp-for="EmployeeInfo.CPRNumber" class="form-control" />
+                <span asp-validation-for="EmployeeInfo.CPRNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="EmployeeInfo.FirstName" class="control-label"></label>
+                <input asp-for="EmployeeInfo.FirstName" class="form-control" />
+                <span asp-validation-for="EmployeeInfo.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="EmployeeInfo.LastName" class="control-label"></label>
+                <input asp-for="EmployeeInfo.LastName" class="form-control" />
+                <span asp-validation-for="EmployeeInfo.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeInfo.Address" class="control-label"></label>
+                <input asp-for="EmployeeInfo.Address" class="form-control" />
+                <span asp-validation-for="EmployeeInfo.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="EmployeeInfo.EmploymentDate" class="control-label"></label>
+                <input asp-for="EmployeeInfo.EmploymentDate" class="form-control" />
+                <span asp-validation-for="EmployeeInfo.EmploymentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeInfo.EndDate" class="control-label"></label>
+                <input asp-for="EmployeeInfo.EndDate" class="form-control" />
+                <span asp-validation-for="EmployeeInfo.EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeInfo.WorkHours" class="control-label"></label>
+                <input asp-for="EmployeeInfo.WorkHours" class="form-control" />
+                <span asp-validation-for="EmployeeInfo.WorkHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeInfo.Position" class="control-label"></label>
+                <input asp-for="EmployeeInfo.Position" class="form-control" />
+                <span asp-validation-for="EmployeeInfo.Position" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeInfo.Institution" class="control-label"></label>
+                <input asp-for="EmployeeInfo.Institution" class="form-control" />
+                <span asp-validation-for="EmployeeInfo.Institution" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeInfo.Department" class="control-label"></label>
+                <input asp-for="EmployeeInfo.Department" class="form-control" />
+                <span asp-validation-for="EmployeeInfo.Department" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

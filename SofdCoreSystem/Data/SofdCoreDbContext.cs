@@ -11,5 +11,6 @@ namespace SofdCoreSystem.Data
         }
 
         public DbSet<AccountCreation> AccountCreation { get; set; }
+        public DbSet<Relation> Relations { get; set; }
     }
 }

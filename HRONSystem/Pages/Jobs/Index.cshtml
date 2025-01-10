@@ -1,0 +1,65 @@
+﻿@page
+@model HRONSystem.Pages.Jobs.IndexModel
+@{
+    ViewData["Title"] = "Jobannoncer Oversigt";
+}
+<div class="container">
+<h1>Jobannoncer Oversigt</h1>
+
+<!-- Søgefunktion -->
+<form method="get" class="search-form">
+    <input type="text" name="SearchTerm" placeholder="Tilføj søgeord" value="@Model.SearchTerm" />
+    <button type="submit">Søg</button>
+</form>
+
+<!-- Toggle for arkiverede job -->
+<form method="get" style="display: inline;">
+    <label>
+        <input type="checkbox" name="ShowArchived" value="true" @(Model.ShowArchived ? "checked" : "") onchange="this.form.submit()" />
+        Vis arkiverede jobannoncer
+    </label>
+</form>
+
+<p>
+    <a asp-page="./Create" class="btn btn-primary">Opret jobannonce</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.JobAdverts[0].PublishingDate)</th>
+            <th>@Html.DisplayNameFor(model => model.JobAdverts[0].ApplicationDeadline)</th>
+            <th>@Html.DisplayNameFor(model => model.JobAdverts[0].JobTitle)</th>
+            <th>@Html.DisplayNameFor(model => model.JobAdverts[0].Media)</th>
+            <th>@Html.DisplayNameFor(model => model.JobAdverts[0].Status)</th>
+            <th>@Html.DisplayNameFor(model => model.JobAdverts[0].Responsible)</th>
+            <th>@Html.DisplayNameFor(model => model.JobAdverts[0].Department)</th>
+            <th>@Html.DisplayNameFor(model => model.JobAdverts[0].Views)</th>
+            <th>@Html.DisplayNameFor(model => model.JobAdverts[0].Applications)</th>
+            <th>Handlinger</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var job in Model.JobAdverts)
+        {
+            <tr>
+                <td>@job.PublishingDate.ToString("d")</td>
+                <td>@job.ApplicationDeadline.ToString("d")</td>
+                <td>@job.JobTitle</td>
+                <td>@job.Media</td>
+                <td>@job.Status</td>
+                <td>@job.Responsible</td>
+                <td>@job.Department</td>
+                <td>@job.Views</td>
+                <td>@job.Applications</td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@job.Id" class="btn btn-sm btn-warning">Rediger</a>
+                        <a asp-page="./Details" asp-route-id="@job.Id" class="btn btn-sm btn-info">Detaljer</a>
+                        <a asp-page="./Delete" asp-route-id="@job.Id" class="btn btn-sm btn-danger">Slet</a>
+                    </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

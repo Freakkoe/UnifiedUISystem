@@ -71,6 +71,59 @@ namespace SofdCoreSystem.Migrations
 
                     b.ToTable("AccountCreation");
                 });
+
+            modelBuilder.Entity("SofdCoreSystem.Models.Relation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EmploymentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("InheritsRights")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Unit")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("Relations");
+                });
+
+            modelBuilder.Entity("SofdCoreSystem.Models.Relation", b =>
+                {
+                    b.HasOne("SofdCoreSystem.Models.AccountCreation", "Account")
+                        .WithMany("Relations")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("SofdCoreSystem.Models.AccountCreation", b =>
+                {
+                    b.Navigation("Relations");
+                });
 #pragma warning restore 612, 618
         }
     }

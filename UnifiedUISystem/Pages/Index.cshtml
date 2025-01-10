@@ -1,0 +1,163 @@
+﻿@page
+@model UnifiedUISystem.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Unified UI";
+}
+
+<h1 class="text-center my-4">Unified User Interface</h1>
+
+<div class="container">
+    <!-- Faneblade -->
+    <ul class="nav nav-tabs" id="dataTabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link @(Request.Query["activeTab"] == "hron" || string.IsNullOrEmpty(Request.Query["activeTab"]) ? "active" : "")"
+               id="hron-tab" data-bs-toggle="tab" href="#hron" role="tab" aria-controls="hron" aria-selected="true" data-tab="hron">HR-ON: Job Listings</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(Request.Query["activeTab"] == "sofdcore" ? "active" : "")"
+               id="sofdcore-tab" data-bs-toggle="tab" href="#sofdcore" role="tab" aria-controls="sofdcore" aria-selected="false" data-tab="sofdcore">SofdCore: Employee Accounts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(Request.Query["activeTab"] == "sdloen" ? "active" : "")"
+               id="sdloen-tab" data-bs-toggle="tab" href="#sdloen" role="tab" aria-controls="sdloen" aria-selected="false" data-tab="sdloen">SD-Løn: Employee Records</a>
+        </li>
+    </ul>
+
+
+    <!-- Indhold for hver fane -->
+    <div class="tab-content" id="dataTabsContent">
+        <!-- HR-ON -->
+        <div class="tab-pane fade @(Request.Query["activeTab"] == "hron" || string.IsNullOrEmpty(Request.Query["activeTab"]) ? "show active" : "")" id="hron" role="tabpanel" aria-labelledby="hron-tab">
+            <div class="d-flex justify-content-between mb-3">
+                <h4>HR-ON: Job Listings</h4>
+                <a asp-page="/HRON/Create" class="btn btn-primary">Opret Ny Jobannonce</a>
+            </div>
+            <form method="get" class="search-form">
+                <input type="text" name="SearchTerm" placeholder="Tilføj søgeord" value="@Model.SearchTerm" />
+                <button type="submit">Søg</button>
+            </form>
+            <form method="get" style="display: inline;">
+                <label>
+                    <input type="checkbox" name="ShowArchived" value="true" @(Model.ShowArchived ? "checked" : "") onchange="this.form.submit()" />
+                    Vis arkiverede jobannoncer
+                </label>
+            </form>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Job Title</th>
+                        <th>Department</th>
+                        <th>Publishing Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var job in Model.JobAdverts)
+                    {
+                        <tr>
+                            <td>@job.JobTitle</td>
+                            <td>@job.Department</td>
+                            <td>@job.PublishingDate.ToShortDateString()</td>
+                            <td>
+                                <a asp-page="/HRON/Details" asp-route-id="@job.Id" class="btn btn-info btn-sm">Details</a>
+                                <a asp-page="/HRON/Edit" asp-route-id="@job.Id" class="btn btn-warning btn-sm">Edit</a>
+                                <a asp-page="/HRON/Delete" asp-route-id="@job.Id" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SofdCore -->
+        <div class="tab-pane fade @(Request.Query["activeTab"] == "sofdcore" ? "show active" : "")" id="sofdcore" role="tabpanel" aria-labelledby="sofdcore-tab">
+            <div class="d-flex justify-content-between mb-3">
+                <h4>SofdCore: Employee Accounts</h4>
+                <a asp-page="/SofdCore/Create" class="btn btn-primary">Opret Ny Bruger</a>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Position</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var account in Model.Accounts)
+                    {
+                        <tr>
+                            <td>@account.FirstName</td>
+                            <td>@account.LastName</td>
+                            <td>@account.Position</td>
+                            <td>
+                                <a asp-page="/SofdCore/Details" asp-route-id="@account.Id" class="btn btn-info btn-sm">Details</a>
+                                <a asp-page="/SofdCore/Edit" asp-route-id="@account.Id" class="btn btn-warning btn-sm">Edit</a>
+                                <a asp-page="/SofdCore/Delete" asp-route-id="@account.Id" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SD-Løn -->
+        <div class="tab-pane fade @(Request.Query["activeTab"] == "sdloen" ? "show active" : "")" id="sdloen" role="tabpanel" aria-labelledby="sdloen-tab">
+            <div class="d-flex justify-content-between mb-3">
+                <h4>SD-Løn: Employee Records</h4>
+                <a asp-page="/SDLoen/Create" class="btn btn-primary">Opret Ny Medarbejder</a>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>CPR Number</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Position</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var employee in Model.Employees)
+                    {
+                        <tr>
+                            <td>@employee.CPRNumber</td>
+                            <td>@employee.FirstName</td>
+                            <td>@employee.LastName</td>
+                            <td>@employee.Position</td>
+                            <td>
+                                <a asp-page="/SDLoen/Details" asp-route-id="@employee.Id" class="btn btn-info btn-sm">Details</a>
+                                <a asp-page="/SDLoen/Edit" asp-route-id="@employee.Id" class="btn btn-warning btn-sm">Edit</a>
+                                <a asp-page="/SDLoen/Delete" asp-route-id="@employee.Id" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll('.nav-link').forEach(function (tab) {
+                tab.addEventListener('click', function (e) {
+                    const tabId = this.getAttribute('data-tab');
+                    const url = new URL(window.location);
+                    url.searchParams.set('activeTab', tabId);
+                    window.history.pushState({}, '', url);
+                });
+            });
+
+            const activeTab = new URLSearchParams(window.location.search).get('activeTab');
+            if (activeTab) {
+                const targetTab = document.querySelector(`[data-tab="${activeTab}"]`);
+                if (targetTab) {
+                    targetTab.click();
+                }
+            }
+        });
+    </script>
+}

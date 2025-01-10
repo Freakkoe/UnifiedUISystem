@@ -1,0 +1,84 @@
+﻿@page
+@model HRONSystem.Pages.Jobs.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>JobAdvert</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.JobAdvert.PublishingDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.JobAdvert.PublishingDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.JobAdvert.ApplicationDeadline)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.JobAdvert.ApplicationDeadline)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.JobAdvert.JobTitle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.JobAdvert.JobTitle)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.JobAdvert.Media)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.JobAdvert.Media)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.JobAdvert.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.JobAdvert.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.JobAdvert.Responsible)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.JobAdvert.Responsible)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.JobAdvert.Department)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.JobAdvert.Department)
+        </dd>
+        @* <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.JobAdvert.Views)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.JobAdvert.Views)
+        </dd *@>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.JobAdvert.Applications)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.JobAdvert.Applications)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.JobAdvert.Comments)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.JobAdvert.Comments)
+        </dd>
+    </dl>
+</div>
+<div>
+    <p><strong>Visninger:</strong> @Model.JobAdvert.Views</p>
+</div>
+<div class="details-actions">
+    <a asp-page="./Edit" asp-route-id="@Model.JobAdvert.Id" class="btn btn-edit">✏️ Rediger</a>
+    <a asp-page="./Index" class="btn btn-back">↩️ Tilbage</a>
+    <a asp-page="./Delete" asp-route-id="@Model.JobAdvert.Id" class="btn btn-delete">❌ Slet</a>
+</div>
+

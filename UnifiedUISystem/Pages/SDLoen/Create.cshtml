@@ -1,0 +1,156 @@
+﻿@page
+@model UnifiedUISystem.Pages.SDLoen.CreateModel
+
+@{
+    ViewData["Title"] = "Opret Ny Medarbejder";
+}
+
+<h1 class="text-center mb-4">Opret Ny Medarbejder</h1>
+
+<div class="container mt-4">
+    <form method="post">
+        <div class="row">
+            <!-- Personlige Detaljer -->
+            <div class="col-md-6">
+                <div class="p-3 mb-4 rounded" style="background-color: #f8f9fa; border: 1px solid #dee2e6;">
+                    <h5 class="text-primary">Personlige Detaljer</h5>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInfo.CPRNumber"></label>
+                        <input asp-for="EmployeeInfo.CPRNumber" class="form-control" />
+                        <span asp-validation-for="EmployeeInfo.CPRNumber" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInfo.FirstName"></label>
+                        <input asp-for="EmployeeInfo.FirstName" class="form-control" />
+                        <span asp-validation-for="EmployeeInfo.FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInfo.LastName"></label>
+                        <input asp-for="EmployeeInfo.LastName" class="form-control" />
+                        <span asp-validation-for="EmployeeInfo.LastName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInfo.Address"></label>
+                        <input asp-for="EmployeeInfo.Address" class="form-control" />
+                        <span asp-validation-for="EmployeeInfo.Address" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInfo.AuthorizationRequirement"></label>
+                        <select asp-for="EmployeeInfo.AuthorizationRequirement" class="form-control">
+                            <option value="FullControl">Fuld Kontrol/Master</option>
+                            <option value="PartControl">Begrænset Kontrol</option>
+                            <option value="Andet">Other</option>
+                        </select>
+                        <span asp-validation-for="EmployeeInfo.AuthorizationRequirement" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ansættelsesoplysninger -->
+            <div class="col-md-6">
+                <div class="p-3 mb-4 rounded" style="background-color: #f8f9fa; border: 1px solid #dee2e6;">
+                    <h5 class="text-primary">Ansættelsesoplysninger</h5>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInfo.Position"></label>
+                        <input asp-for="EmployeeInfo.Position" class="form-control" />
+                        <span asp-validation-for="EmployeeInfo.Position" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInfo.WorkHours"></label>
+                        <input asp-for="EmployeeInfo.WorkHours" type="number" class="form-control" />
+                        <span asp-validation-for="EmployeeInfo.WorkHours" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInfo.JobType"></label>
+                        <select asp-for="EmployeeInfo.JobType" class="form-control" >
+                            <option value="FullTime">Fuld Tid</option>
+                            <option value="PartTime">Deltid</option>
+                            <option value="Other">Andet</option>
+                        </select>                        
+                        <span asp-validation-for="EmployeeInfo.JobType" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInfo.Department"></label>
+                        <input asp-for="EmployeeInfo.Department" class="form-control" />
+                        <span asp-validation-for="EmployeeInfo.Department" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInfo.Institution"></label>
+                        <input asp-for="EmployeeInfo.Institution" class="form-control" />
+                        <span asp-validation-for="EmployeeInfo.Institution" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <!-- GEM DENNE OG SE OM DU KAN FINDE EN LØSNING -->
+                        <label asp-for="EmployeeInfo.EmploymentDate"></label>
+                        <input type="date " asp-for="EmployeeInfo.EmploymentDate" class="form-control" />
+                        <span asp-validation-for="EmployeeInfo.EmploymentDate" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EmployeeInfo.StartDate"></label>
+                        <input asp-for="EmployeeInfo.StartDate" class="form-control" />
+                        <span asp-validation-for="EmployeeInfo.StartDate" class="text-danger"></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Kontaktinformation -->
+        <div class="p-3 mb-4 rounded" style="background-color: #f8f9fa; border: 1px solid #dee2e6;">
+            <h5 class="text-primary">Kontaktinformation</h5>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="EmployeeInfo.PhonePrivate"></label>
+                    <input asp-for="EmployeeInfo.PhonePrivate" class="form-control" />
+                    <span asp-validation-for="EmployeeInfo.PhonePrivate" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="EmployeeInfo.EmailPrivate"></label>
+                    <input asp-for="EmployeeInfo.EmailPrivate" class="form-control" />
+                    <span asp-validation-for="EmployeeInfo.EmailPrivate" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="EmployeeInfo.PhoneWork"></label>
+                    <input asp-for="EmployeeInfo.PhoneWork" class="form-control" />
+                    <span asp-validation-for="EmployeeInfo.PhoneWork" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="EmployeeInfo.EmailWork"></label>
+                    <input asp-for="EmployeeInfo.EmailWork" class="form-control" />
+                    <span asp-validation-for="EmployeeInfo.EmailWork" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Handling -->
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Gem Medarbejder</button>
+            <a asp-page="../Index" asp-route-activeTab="sdloen" class="btn btn-secondary">Annuller</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<style>
+    body {
+        padding-bottom: 70px; /* Tilføj plads til footer */
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #f8f9fa;
+        padding: 10px 0;
+        text-align: center;
+        border-top: 1px solid #e7e7e7;
+    }
+
+    .btn-secondary {
+        margin-top: 20px;
+    }
+</style>

@@ -1,31 +1,125 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* Generelle stilregler */
 body {
-  margin-bottom: 60px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* Kontrast og tydelighed */
+h1, h2, h3 {
+    color: #2c3e50;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
+
+    .table th, .table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .table th {
+        background-color: #2c3e50;
+        color: white;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+/* Justering og afstand */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-check-input {
+    margin-right: 10px;
+}
+
+/* Navigation og topbar */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    padding: 8px;
+    margin-right: 10px;
+}
+
+.search-bar button {
+    padding: 8px 12px;
+}
+
+/* Knap-standard */
+.btn {
+    display: inline-block;
+/*    padding: 10px 15px;
+*/    margin: 5px;
+/*    font-size: 14px;
+*/    font-weight: bold;
+    text-decoration: none;
+    color: white;
+/*    border-radius: 5px;
+*/    transition: all 0.3s ease-in-out;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Farver baseret på handling */
+.btn-edit {
+    background-color: #3498db; /* Blå */
+}
+
+    .btn-edit:hover {
+        background-color: #2980b9;
+    }
+
+.btn-details {
+    background-color: #2ecc71; /* Grøn */
+}
+
+    .btn-details:hover {
+        background-color: #27ae60;
+    }
+
+.btn-delete {
+    background-color: #e74c3c; /* Rød */
+}
+
+    .btn-delete:hover {
+        background-color: #c0392b;
+    }
+
+.btn-back {
+    background-color: #95a5a6; /* Grå */
+}
+
+    .btn-back:hover {
+        background-color: #7f8c8d;
+    }
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+    .button-group .btn{
+        padding: 5px 10px;
+        font-size: 14px;
+        border-radius: 5px;
+    }

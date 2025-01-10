@@ -1,4 +1,84 @@
-﻿@page
+﻿@page "{id:int}"
+@model SofdCoreSystem.Pages.AccountCreation.DetailsModel
+
+@{
+    ViewData["Title"] = "Medarbejderdetaljer";
+}
+
+<h2>Medarbejderdetaljer</h2>
+
+<!-- Medarbejderoplysninger -->
+<div class="card mb-4">
+    <div class="card-header">
+        <h4>Overordnet Information</h4>
+    </div>
+    <div class="card-body">
+        <p><strong>Fornavn:</strong> @Model.Account.FirstName</p>
+        <p><strong>Efternavn:</strong> @Model.Account.LastName</p>
+        <p><strong>Stilling:</strong> @Model.Account.Position</p>
+        <p><strong>Jobtype:</strong> @Model.Account.JobType</p>
+        <p><strong>Startdato:</strong> @Model.Account.StartDate.ToShortDateString()</p>
+        <p><strong>Slutdato:</strong> @(Model.Account.EndDate.HasValue ? Model.Account.EndDate.Value.ToShortDateString() : "N/A")</p>
+        <p><strong>Medarbejdernummer:</strong> @Model.Account.EmployeeNumber</p>
+        <p><strong>Arbejdstimer:</strong> @Model.Account.WorkHours</p>
+        <p><strong>Oprettelsesdato:</strong> @Model.Account.CreationDate.ToShortDateString()</p>
+        <p><strong>Senest opdateret:</strong> @(Model.Account.LastUpdated.HasValue ? Model.Account.LastUpdated.Value.ToShortDateString() : "N/A")</p>
+    </div>
+</div>
+
+<!-- Tilhørsforhold -->
+<div class="card">
+    <div class="card-header">
+        <h4>Tilhørsforhold</h4>
+    </div>
+    <div class="card-body">
+        <button class="btn btn-primary mb-3">Opret tilhørsforhold</button>
+        <button class="btn btn-secondary mb-3">Tilpas nedarvning af rettigheder</button>
+        <button class="btn btn-warning mb-3">Sæt pausemarkering</button>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Stilling</th>
+                    <th>Enhed</th>
+                    <th>Arver rettigheder</th>
+                    <th>Status</th>
+                    <th>Ansættelsesforhold</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Relations != null && Model.Relations.Count > 0)
+                {
+                    foreach (var relation in Model.Relations)
+                    {
+                        <tr>
+                            <td>@relation.Position</td>
+                            <td>@relation.Unit</td>
+                            <td>@(relation.InheritsRights ? "✔" : "✖")</td>
+                            <td>@relation.Status</td>
+                            <td>@relation.EmploymentType</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center">Ingen tilhørsforhold fundet.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Tilbage-knap -->
+<div class="mt-3">
+    <a asp-page="./Index" class="btn btn-secondary">Tilbage til oversigten</a>
+</div>
+
+
+
+@* @page
 @model SofdCoreSystem.Pages.AccountCreation.DetailsModel
 
 @{
@@ -73,7 +153,82 @@
         </dd>
     </dl>
 </div>
+
+<h2>Medarbejderdetaljer</h2>
+
+<!-- Faner -->
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active" id="tab-affiliation" data-bs-toggle="tab" href="#affiliation">Tilhørsforhold</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="tab-useraccount" data-bs-toggle="tab" href="#useraccount">Brugerkonti</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="tab-phone" data-bs-toggle="tab" href="#phone">Telefon</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="tab-contact" data-bs-toggle="tab" href="#contact">Kontakt</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="tab-comments" data-bs-toggle="tab" href="#comments">Kommentarer</a>
+    </li>
+</ul>
+
+<!-- Indhold for faner -->
+<div class="tab-content mt-3">
+    <div class="tab-pane fade show active" id="affiliation">
+        <h3>Tilhørsforhold</h3>
+        <button class="btn btn-primary">Opret tilhørsforhold</button>
+        <button class="btn btn-secondary">Tilpas nedarvning af rettigheder</button>
+        <button class="btn btn-warning">Sæt pausemarkering</button>
+
+        <!-- Tabel -->
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Stilling</th>
+                    <th>Enhed</th>
+                    <th>Arver rettigheder</th>
+                    <th>Status</th>
+                    <th>Ansættelsesforhold</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>IT-Medarbejder</td>
+                    <td>Fagpersonale, Odsherred Madservice</td>
+                    <td>✔</td>
+                    <td><span class="badge bg-warning text-dark">Inaktiv</span></td>
+                    <td>Månedsløn bagud</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="tab-pane fade" id="useraccount">
+        <h3>Brugerkonti</h3>
+        <p>Her kan du administrere medarbejderens brugerkonti.</p>
+    </div>
+
+    <div class="tab-pane fade" id="phone">
+        <h3>Telefon</h3>
+        <p>Her kan du tilføje eller redigere telefonnumre.</p>
+    </div>
+
+    <div class="tab-pane fade" id="contact">
+        <h3>Kontakt</h3>
+        <p>Her kan du redigere kontaktoplysninger.</p>
+    </div>
+
+    <div class="tab-pane fade" id="comments">
+        <h3>Kommentarer</h3>
+        <p>Her kan du tilføje eller redigere kommentarer.</p>
+    </div>
+</div>
+
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.AccountCreation.Id">Edit</a> |
     <a asp-page="./Index">Back to List</a>
 </div>
+ *@

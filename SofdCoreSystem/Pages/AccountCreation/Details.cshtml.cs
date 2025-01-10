@@ -1,43 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SofdCoreSystem.Data;
 using SofdCoreSystem.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SofdCoreSystem.Pages.AccountCreation
 {
     public class DetailsModel : PageModel
     {
-        private readonly SofdCoreSystem.Data.SofdCoreDbContext _context;
+        private readonly SofdCoreDbContext _context;
 
-        public DetailsModel(SofdCoreSystem.Data.SofdCoreDbContext context)
+        public DetailsModel(SofdCoreDbContext context)
         {
             _context = context;
         }
 
-        public Models.AccountCreation AccountCreation { get; set; } = default!;
+        public Models.AccountCreation Account { get; set; }
+        public List<Relation> Relations { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public IActionResult OnGet(int id)
         {
-            if (id == null)
+            Account = _context.AccountCreation
+                .Include(a => a.Relations) // Hent relationer
+                .FirstOrDefault(a => a.Id == id);
+
+            if (Account == null)
             {
                 return NotFound();
             }
 
-            var accountcreation = await _context.AccountCreation.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (accountcreation is not null)
-            {
-                AccountCreation = accountcreation;
-
-                return Page();
-            }
-
-            return NotFound();
+            Relations = Account.Relations.ToList();
+            return Page();
         }
     }
 }

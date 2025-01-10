@@ -1,0 +1,100 @@
+﻿@page "{id:int}"
+@model UnifiedUISystem.Pages.SofdCore.EditModel
+@{
+    ViewData["Title"] = "Rediger Medarbejder";
+}
+
+<h1 class="text-center mb-4">Rediger Medarbejder</h1>
+
+@if (!ModelState.IsValid)
+{
+    <div class="alert alert-danger text-center">
+        Der opstod fejl. Ret venligst de markerede felter.
+    </div>
+}
+
+<div class="container mt-4">
+    <form method="post">
+        <input type="hidden" asp-for="Account.Id" />
+        <div class="row">
+            <!-- Personlige Detaljer -->
+            <div class="col-md-6">
+                <div class="p-3 mb-4 rounded" style="background-color: #f8f9fa; border: 1px solid #dee2e6;">
+                    <h5 class="text-primary">Personlige Detaljer</h5>
+                    <div class="mb-3">
+                        <label asp-for="Account.FirstName"></label>
+                        <input asp-for="Account.FirstName" class="form-control" />
+                        <span asp-validation-for="Account.FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Account.LastName"></label>
+                        <input asp-for="Account.LastName" class="form-control" />
+                        <span asp-validation-for="Account.LastName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Account.Position"></label>
+                        <input asp-for="Account.Position" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Account.JobType"></label>
+                        <input asp-for="Account.JobType" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ansættelsesoplysninger -->
+            <div class="col-md-6">
+                <div class="p-3 mb-4 rounded" style="background-color: #f8f9fa; border: 1px solid #dee2e6;">
+                    <h5 class="text-primary">Ansættelsesoplysninger</h5>
+                    <div class="mb-3">
+                        <label asp-for="Account.EmployeeNumber"></label>
+                        <input asp-for="Account.EmployeeNumber" class="form-control" />
+                        <span asp-validation-for="Account.EmployeeNumber" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Account.WorkHours"></label>
+                        <input asp-for="Account.WorkHours" type="number" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Account.StartDate"></label>
+                        <input asp-for="Account.StartDate" type="date" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Account.EndDate"></label>
+                        <input asp-for="Account.EndDate" type="date" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Handling -->
+        <div class="d-flex justify-content-between mt-4">
+            <button type="submit" class="btn btn-primary">Gem Ændringer</button>
+            <a asp-page="../Index" asp-route-activeTab="sofdcore" class="btn btn-secondary">Annuller</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<style>
+    body {
+        padding-bottom: 70px; /* Tilføj plads til footer */
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #f8f9fa;
+        padding: 10px 0;
+        text-align: center;
+        border-top: 1px solid #e7e7e7;
+    }
+
+    .btn-secondary {
+        margin-top: 20px;
+    }
+</style>

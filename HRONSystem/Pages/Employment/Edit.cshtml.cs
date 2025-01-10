@@ -30,7 +30,7 @@ namespace HRONSystem.Pages.Employment
                 return NotFound();
             }
 
-            var employment =  await _context.Employment.FirstOrDefaultAsync(m => m.EmploymentID == id);
+            var employment = await _context.Employment.FirstOrDefaultAsync(m => m.EmploymentID == id);
             if (employment == null)
             {
                 return NotFound();

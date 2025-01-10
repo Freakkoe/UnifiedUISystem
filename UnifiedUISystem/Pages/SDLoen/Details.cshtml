@@ -1,0 +1,70 @@
+﻿@page "{id:int}"
+@model UnifiedUISystem.Pages.SDLoen.DetailsModel
+
+@{
+    ViewData["Title"] = "Medarbejder Detaljer";
+}
+
+<h1 class="text-center mb-4">Medarbejder Detaljer</h1>
+
+<div class="container mt-4">
+    <div class="p-4 rounded" style="background-color: #f8f9fa; border: 1px solid #dee2e6;">
+        <h5 class="text-primary mb-3">Personlige Detaljer</h5>
+        <p><strong>Fornavn:</strong> @Model.EmployeeInfo.FirstName</p>
+        <p><strong>Efternavn:</strong> @Model.EmployeeInfo.LastName</p>
+        <p><strong>CPR-Nummer:</strong> @Model.EmployeeInfo.CPRNumber</p>
+        <p><strong>Adresse:</strong> @Model.EmployeeInfo.Address</p>
+    </div>
+
+    <div class="p-4 mt-3 rounded" style="background-color: #f8f9fa; border: 1px solid #dee2e6;">
+        <h5 class="text-primary mb-3">Ansættelsesoplysninger</h5>
+        <p><strong>Stilling:</strong> @Model.EmployeeInfo.Position</p>
+        <p><strong>Arbejdstimer:</strong> @Model.EmployeeInfo.WorkHours</p>
+        <p><strong>Institution:</strong> @Model.EmployeeInfo.Institution</p>
+        <p><strong>Jobtype:</strong> @Model.EmployeeInfo.JobType</p>
+        <p><strong>Afdeling:</strong> @Model.EmployeeInfo.Department</p>
+        <p><strong>Autorisation:</strong> @Model.EmployeeInfo.AuthorizationRequirement</p>
+    </div>
+
+    <div class="p-4 mt-3 rounded" style="background-color: #f8f9fa; border: 1px solid #dee2e6;">
+        <h5 class="text-primary mb-3">Kontaktinformation</h5>
+        <p><strong>Arbejdstelefon:</strong> @Model.EmployeeInfo.PhoneWork</p>
+        <p><strong>Privat telefon:</strong> @Model.EmployeeInfo.PhonePrivate</p>
+        <p><strong>Arbejdsmail:</strong> @Model.EmployeeInfo.EmailWork</p>
+        <p><strong>Privat mail:</strong> @Model.EmployeeInfo.EmailPrivate</p>
+    </div>
+
+    <div class="p-4 mt-3 rounded" style="background-color: #f8f9fa; border: 1px solid #dee2e6;">
+        <h5 class="text-primary mb-3">Tidsoplysninger</h5>
+        <p><strong>Startdato:</strong> @Model.EmployeeInfo.StartDate?.ToShortDateString()</p>
+        <p><strong>Slutdato:</strong> @Model.EmployeeInfo.EndDate?.ToShortDateString()</p>
+        <p><strong>Oprettelsesdato:</strong> @Model.EmployeeInfo.CreationDate.ToShortDateString()</p>
+        <p><strong>Sidst opdateret:</strong> @Model.EmployeeInfo.LastUpdated?.ToShortDateString()</p>
+    </div>
+
+    <div class="mt-4 d-flex justify-content-between">
+        <a asp-page="./Edit" asp-route-id="@Model.EmployeeInfo.Id" class="btn btn-primary">Rediger</a>
+        <a asp-page="./Delete" asp-route-id="@Model.EmployeeInfo.Id" class="btn btn-danger">Slet</a>
+        <a asp-page="../Index" asp-route-activeTab="sdloen" class="btn btn-secondary">Tilbage</a>
+    </div>
+</div>
+<style>
+    body {
+        padding-bottom: 70px; /* Tilføj plads til footer */
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #f8f9fa;
+        padding: 10px 0;
+        text-align: center;
+        border-top: 1px solid #e7e7e7;
+    }
+
+    .btn-secondary {
+        margin-top: 20px;
+    }
+</style>

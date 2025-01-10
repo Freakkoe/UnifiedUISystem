@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace SofdCoreSystem.Models
@@ -7,16 +8,22 @@ namespace SofdCoreSystem.Models
     {
         public int Id { get; set; } // Primær nøgle
 
-        [Required]
+        [Required(ErrorMessage = "FirstName is required")]
+        [Display(Name ="Navn")]
         [StringLength(50)]
         public string FirstName { get; set; } // Fornavn
 
-        [Required]
+        [Required(ErrorMessage = "LastName is required")]
+        [Display(Name = "Efternavn")]
         [StringLength(50)]
         public string LastName { get; set; } // Efternavn
 
+        [Required(ErrorMessage = "Position is required")]
+        [Display(Name = "Stilling")]
         public string Position { get; set; } // Stilling
 
+        [Required(ErrorMessage = "JobType is required")]
+        [Display(Name = "Job Type")]
         public string JobType { get; set; } // Jobtype
 
         [DataType(DataType.Date)]
@@ -25,14 +32,20 @@ namespace SofdCoreSystem.Models
         [DataType(DataType.Date)]
         public DateTime? EndDate { get; set; } // Slutdato
 
-        [Required]
+        [Required(ErrorMessage = "EmployeeNumber is required")]
+        [Display(Name = "Medarbejder Nummer")]
         public string EmployeeNumber { get; set; } // Medarbejdernummer
 
+        [Required(ErrorMessage = "WorkHours is required")]
+        [Display(Name = "Arbejdstimer")]
         public decimal WorkHours { get; set; } // Arbejdstimer
 
         public DateTime CreationDate { get; set; } = DateTime.Now; // Oprettelsesdato
 
         public DateTime? LastUpdated { get; set; } // Sidst opdateret
+
+
+        public ICollection<Relation> Relations { get; set; } = new List<Relation>();
 
         public AccountCreation()
         {

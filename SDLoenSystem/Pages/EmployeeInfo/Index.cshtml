@@ -1,0 +1,61 @@
+﻿@page
+@model SDLoenSystem.Pages.EmployeeInfo.IndexModel
+
+@{
+    ViewData["Title"] = "Medarbejder Oversigt";
+}
+
+<h1>Medarbejder Oversigt</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Opret Ny Medarbejder</a>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.EmployeeInfo[0].CPRNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.EmployeeInfo[0].FirstName)</th>
+            <th>@Html.DisplayNameFor(model => model.EmployeeInfo[0].LastName)</th>
+            <th>@Html.DisplayNameFor(model => model.EmployeeInfo[0].Address)</th>
+            <th>@Html.DisplayNameFor(model => model.EmployeeInfo[0].Position)</th>
+            <th>@Html.DisplayNameFor(model => model.EmployeeInfo[0].Department)</th>
+            <th>@Html.DisplayNameFor(model => model.EmployeeInfo[0].EmploymentDate)</th>
+            <th>@Html.DisplayNameFor(model => model.EmployeeInfo[0].WorkHours)</th>
+            <th>@Html.DisplayNameFor(model => model.EmployeeInfo[0].PhoneWork)</th>
+            <th>@Html.DisplayNameFor(model => model.EmployeeInfo[0].EmailWork)</th>
+            <th>@Html.DisplayNameFor(model => model.EmployeeInfo[0].Institution)</th>
+            <th>@Html.DisplayNameFor(model => model.EmployeeInfo[0].JobType)</th>
+            <th>@Html.DisplayNameFor(model => model.EmployeeInfo[0].StartDate)</th>
+            <th>@Html.DisplayNameFor(model => model.EmployeeInfo[0].EndDate)</th>
+            <th>@Html.DisplayNameFor(model => model.EmployeeInfo[0].CreationDate)</th>
+            <th>Handlinger</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.EmployeeInfo)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.CPRNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                <td>@Html.DisplayFor(modelItem => item.Position)</td>
+                <td>@Html.DisplayFor(modelItem => item.Department)</td>
+                <td>@Html.DisplayFor(modelItem => item.EmploymentDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.WorkHours)</td>
+                <td>@Html.DisplayFor(modelItem => item.PhoneWork)</td>
+                <td>@Html.DisplayFor(modelItem => item.EmailWork)</td>
+                <td>@Html.DisplayFor(modelItem => item.Institution)</td>
+                <td>@Html.DisplayFor(modelItem => item.JobType)</td>
+                <td>@Html.DisplayFor(modelItem => item.StartDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.EndDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.CreationDate)</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Rediger</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Detaljer</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Slet</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

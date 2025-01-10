@@ -1,0 +1,113 @@
+﻿@page
+@model UnifiedUISystem.Pages.HRON.CreateModel
+
+@{
+    ViewData["Title"] = "Opret Ny Jobannonce";
+}
+
+<h1 class="text-center mb-4">Opret Ny Jobannonce</h1>
+
+<div class="container mt-4">
+    <form method="post">
+        <div class="row">
+            <!-- Generelle Detaljer -->
+            <div class="col-md-6">
+                <div class="p-3 mb-4 rounded" style="background-color: #f8f9fa; border: 1px solid #dee2e6;">
+                    <h5 class="text-primary">Generelle Detaljer</h5>
+                    <div class="mb-3">
+                        <label asp-for="JobAdvert.JobTitle"></label>
+                        <input asp-for="JobAdvert.JobTitle" class="form-control" />
+                        <span asp-validation-for="JobAdvert.JobTitle" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="JobAdvert.PublishingDate"></label>
+                        <input asp-for="JobAdvert.PublishingDate" type="date" class="form-control" />
+                        <span asp-validation-for="JobAdvert.PublishingDate" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="JobAdvert.ApplicationDeadline"></label>
+                        <input asp-for="JobAdvert.ApplicationDeadline" type="date" class="form-control" />
+                        <span asp-validation-for="JobAdvert.ApplicationDeadline" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yderligere Information -->
+            <div class="col-md-6">
+                <div class="p-3 mb-4 rounded" style="background-color: #f8f9fa; border: 1px solid #dee2e6;">
+                    <h5 class="text-primary">Yderligere Information</h5>
+                    <div class="mb-3">
+                        <label asp-for="JobAdvert.Responsible"></label>
+                        <input asp-for="JobAdvert.Responsible" class="form-control" />
+                        <span asp-validation-for="JobAdvert.Responsible" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="JobAdvert.Department"></label>
+                        <input asp-for="JobAdvert.Department" class="form-control" />
+                        <span asp-validation-for="JobAdvert.Department" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="JobAdvert.Media"></label>
+                        <input asp-for="JobAdvert.Media" class="form-control" />
+                        <span asp-validation-for="JobAdvert.Media" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="JobAdvert.Comments"></label>
+                        <textarea asp-for="JobAdvert.Comments" class="form-control"></textarea>
+                        <span asp-validation-for="JobAdvert.Comments" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status og Arkivering -->
+        <div class="p-3 mb-4 rounded" style="background-color: #f8f9fa; border: 1px solid #dee2e6;">
+            <h5 class="text-primary">Status og Arkivering</h5>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label asp-for="JobAdvert.Status"></label>
+                    <select asp-for="JobAdvert.Status" class="form-control">
+                        <option value="Active">Active</option>
+                        <option value="Closed">Closed</option>
+                        <option value="Archived">Archived</option>
+                    </select>
+                    <span asp-validation-for="JobAdvert.Status" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label asp-for="JobAdvert.IsArchived"></label>
+                    <input asp-for="JobAdvert.IsArchived" type="checkbox" class="form-check-input" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Handling -->
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Opret</button>
+            <a asp-page="../Index" asp-route-activeTab="hron" class="btn btn-secondary">Annuller</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<style>
+    body {
+        padding-bottom: 70px; /* Tilføj plads til footer */
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #f8f9fa;
+        padding: 10px 0;
+        text-align: center;
+        border-top: 1px solid #e7e7e7;
+    }
+
+    .btn-secondary {
+        margin-top: 20px;
+    }
+</style>
