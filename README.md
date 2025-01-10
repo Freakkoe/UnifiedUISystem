@@ -5,7 +5,7 @@ This solution is a simplified version of an employment management system inspire
 Technologies Used✅
 
 
-ASP.NET Core (.NET 8.0)
+ASP.NET Core (.NET 9.0)
 
 Razor Pages for UI
 
@@ -26,7 +26,7 @@ Modular Design: The code follows clean principles, making it scalable for additi
 Future Enhancements: Design and styling improvements planned in later phases.
 
 
-How to Run:
+How to Run:✅
 
 
 Clone the repository.
