@@ -10,121 +10,155 @@ using SofdCoreSystem.Data;
 
 namespace SofdCoreSystem.Migrations
 {
-    [DbContext(typeof(SofdCoreDbContext))]
+    // Define a partial class for the model snapshot that represents the database schema.
+    [DbContext(typeof(SofdCoreDbContext))] // Specify the context this snapshot belongs to.
     partial class SofdCoreDbContextModelSnapshot : ModelSnapshot
     {
+        // Override the BuildModel method to configure the model's entity types.
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
-#pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+#pragma warning disable 612, 618 // Disable obsolete warnings related to SQL Server model configuration.
 
+            // Add annotations that describe product version and the maximum identifier length.
+            modelBuilder
+                .HasAnnotation("ProductVersion", "9.0.0") // Set the product version to 9.0.0.
+                .HasAnnotation("Relational:MaxIdentifierLength", 128); // Set the maximum identifier length for relational databases.
+
+            // Configure the model to use identity columns (auto-incremented).
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            // Define the AccountCreation entity in the model.
             modelBuilder.Entity("SofdCoreSystem.Models.AccountCreation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                // Define the Id property, which is the primary key and auto-incremented.
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd() // Automatically generates values for this property on add.
+                    .HasColumnType("int"); // Specify the column type in the database.
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id")); // Specify that this field uses identity.
 
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
+                // Define the CreationDate property as a DateTime type.
+                b.Property<DateTime>("CreationDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("EmployeeNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                // Define the EmployeeNumber property as a required string (nvarchar).
+                b.Property<string>("EmployeeNumber")
+                    .IsRequired() // Mark as required.
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("EndDate")
-                        .HasColumnType("datetime2");
+                // Define the EndDate property as a nullable DateTime (nullable means it can have a NULL value).
+                b.Property<DateTime?>("EndDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                // Define FirstName property, which is required and has a max length of 50 characters.
+                b.Property<string>("FirstName")
+                    .IsRequired()
+                    .HasMaxLength(50) // Set max length for the column.
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("JobType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                // Define JobType property as a required string.
+                b.Property<string>("JobType")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                // Define LastName property, which is required and has a max length of 50 characters.
+                b.Property<string>("LastName")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime?>("LastUpdated")
-                        .HasColumnType("datetime2");
+                // Define LastUpdated property as a nullable DateTime.
+                b.Property<DateTime?>("LastUpdated")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                // Define Position property as a required string.
+                b.Property<string>("Position")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
+                // Define StartDate property as a DateTime (required).
+                b.Property<DateTime>("StartDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<decimal>("WorkHours")
-                        .HasColumnType("decimal(18,2)");
+                // Define WorkHours property as a decimal (18,2).
+                b.Property<decimal>("WorkHours")
+                    .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                // Set the primary key for the AccountCreation entity.
+                b.HasKey("Id");
 
-                    b.ToTable("AccountCreation");
-                });
+                // Map the entity to the AccountCreation table in the database.
+                b.ToTable("AccountCreation");
+            });
 
+            // Define the Relation entity in the model.
             modelBuilder.Entity("SofdCoreSystem.Models.Relation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+            {
+                // Define the Id property for Relation entity.
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd() // Auto-incremented ID.
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id")); // Use identity for the Id.
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int");
+                // Define the AccountId property, linking this entity to the AccountCreation entity.
+                b.Property<int>("AccountId")
+                    .HasColumnType("int");
 
-                    b.Property<string>("EmploymentType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                // Define EmploymentType property as a required string.
+                b.Property<string>("EmploymentType")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("InheritsRights")
-                        .HasColumnType("bit");
+                // Define InheritsRights property as a required boolean.
+                b.Property<bool>("InheritsRights")
+                    .HasColumnType("bit");
 
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                // Define Position property as a required string.
+                b.Property<string>("Position")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                // Define Status property as a required string.
+                b.Property<string>("Status")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Unit")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                // Define Unit property as a required string.
+                b.Property<string>("Unit")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                // Set the primary key for the Relation entity.
+                b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
+                // Create a foreign key relationship between Relation and AccountCreation using AccountId.
+                b.HasIndex("AccountId");
 
-                    b.ToTable("Relations");
-                });
+                // Map the entity to the Relations table in the database.
+                b.ToTable("Relations");
+            });
 
+            // Define the relationship between the Relation and AccountCreation entities.
             modelBuilder.Entity("SofdCoreSystem.Models.Relation", b =>
-                {
-                    b.HasOne("SofdCoreSystem.Models.AccountCreation", "Account")
-                        .WithMany("Relations")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                // Define a one-to-many relationship: one AccountCreation can have many Relations.
+                b.HasOne("SofdCoreSystem.Models.AccountCreation", "Account")
+                    .WithMany("Relations") // One AccountCreation has many Relations.
+                    .HasForeignKey("AccountId") // Define the foreign key to AccountCreation.
+                    .OnDelete(DeleteBehavior.Cascade) // Cascade delete: if AccountCreation is deleted, related Relations will be deleted.
+                    .IsRequired(); // AccountId is required.
 
-                    b.Navigation("Account");
-                });
+                b.Navigation("Account"); // Include navigation for the Account property.
+            });
 
+            // Define navigation property in AccountCreation to reference Relations.
             modelBuilder.Entity("SofdCoreSystem.Models.AccountCreation", b =>
-                {
-                    b.Navigation("Relations");
-                });
-#pragma warning restore 612, 618
+            {
+                b.Navigation("Relations"); // Include navigation for Relations property.
+            });
+
+#pragma warning restore 612, 618 // Re-enable warnings related to obsolete code.
         }
     }
 }
