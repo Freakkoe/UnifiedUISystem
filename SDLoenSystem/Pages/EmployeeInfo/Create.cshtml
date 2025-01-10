@@ -1,4 +1,4 @@
-﻿@* @page
+﻿@page
 @model SDLoenSystem.Pages.EmployeeInfo.CreateModel
 
         @{
@@ -37,36 +37,6 @@
                 <span asp-validation-for="EmployeeInfo.Address" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmployeeInfo.City" class="control-label"></label>
-                <input asp-for="EmployeeInfo.City" class="form-control" />
-                <span asp-validation-for="EmployeeInfo.City" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmployeeInfo.PostalCode" class="control-label"></label>
-                <input asp-for="EmployeeInfo.PostalCode" class="form-control" />
-                <span asp-validation-for="EmployeeInfo.PostalCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmployeeInfo.Country" class="control-label"></label>
-                <input asp-for="EmployeeInfo.Country" class="form-control" />
-                <span asp-validation-for="EmployeeInfo.Country" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmployeeInfo.WorkPhone" class="control-label"></label>
-                <input asp-for="EmployeeInfo.WorkPhone" class="form-control" />
-                <span asp-validation-for="EmployeeInfo.WorkPhone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmployeeInfo.MobilePhone" class="control-label"></label>
-                <input asp-for="EmployeeInfo.MobilePhone" class="form-control" />
-                <span asp-validation-for="EmployeeInfo.MobilePhone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmployeeInfo.Email" class="control-label"></label>
-                <input asp-for="EmployeeInfo.Email" class="form-control" />
-                <span asp-validation-for="EmployeeInfo.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <span class="text-danger">*</span>
                 <label asp-for="EmployeeInfo.EmploymentDate" class="control-label"></label>
                 <input asp-for="EmployeeInfo.EmploymentDate" class="form-control" />
@@ -98,11 +68,6 @@
                 <span asp-validation-for="EmployeeInfo.Department" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmployeeInfo.Comments" class="control-label"></label>
-                <input asp-for="EmployeeInfo.Comments" class="form-control" />
-                <span asp-validation-for="EmployeeInfo.Comments" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -116,4 +81,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
- *@
