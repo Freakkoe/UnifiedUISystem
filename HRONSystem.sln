@@ -13,6 +13,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnifiedUISystem", "UnifiedU
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnifiedUITests", "UnifiedUITests\UnifiedUITests.csproj", "{2EC636C0-2FB4-45CB-AFF3-077328B5911E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database Scripts", "Database Scripts", "{5A66D1C8-C8F3-42EC-82D0-16F7187BFC0C}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Desktop\UnifiedUISystem - Afsluttende Eksamen, Mads Gertz Jensen\HRON_New_DB.sql = ..\..\..\Desktop\UnifiedUISystem - Afsluttende Eksamen, Mads Gertz Jensen\HRON_New_DB.sql
+		..\..\..\Desktop\UnifiedUISystem - Afsluttende Eksamen, Mads Gertz Jensen\SDLOEN_DB.sql = ..\..\..\Desktop\UnifiedUISystem - Afsluttende Eksamen, Mads Gertz Jensen\SDLOEN_DB.sql
+		..\..\..\Desktop\UnifiedUISystem - Afsluttende Eksamen, Mads Gertz Jensen\SofdCore_DB.sql = ..\..\..\Desktop\UnifiedUISystem - Afsluttende Eksamen, Mads Gertz Jensen\SofdCore_DB.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
