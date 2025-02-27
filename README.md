@@ -1,38 +1,24 @@
-HR-ON Employment Management System
+# Unified UI System for HRON, SDLOEN, and SOFDCORE
 
-This solution is a simplified version of an employment management system inspired by HR-ON, built using ASP.NET Core Razor Pages and SQL Server. The project provides CRUD (Create, Read, Update, Delete) functionality for managing employment records, including details like job title, employee name, start date, department, and status.
+This project provides a **centralized user interface** that integrates HRON, SDLOEN, and SOFDCORE into a unified platform. Built with **ASP.NET Core Razor Pages** and **SQL Server**, the system simplifies employment management by offering CRUD (Create, Read, Update, Delete) functionality for handling employee records.
 
-Technologies Used✅
+## 🚀 Technologies Used  
 
+- **ASP.NET Core (.NET 9.0)**
+- **Razor Pages** for UI  
+- **SQL Server LocalDB** for database storage  
+- **Entity Framework Core** for data access  
 
-ASP.NET Core (.NET 9.0)
+## 🔑 Key Features  
 
-Razor Pages for UI
+- **Unified Interface:** A single UI for HRON, SDLOEN, and SOFDCORE.  
+- **CRUD Operations:** Add, edit, delete, and view employment records.  
+- **Structured Database:** Clean table design with migrations using EF Core.  
+- **Scalable & Modular:** Designed for easy expansion and maintenance.  
 
-SQL Server LocalDB for database storage
+## 🛠 How to Run  
 
-Entity Framework Core for data access
-
-
-Key Features✅
-
-
-CRUD Operations: Easily manage employment records (add, edit, delete, and view).
-
-Structured Database: A clean table structure implemented with migrations and EF Core.
-
-Modular Design: The code follows clean principles, making it scalable for additional features.
-
-Future Enhancements: Design and styling improvements planned in later phases.
-
-
-How to Run:✅
-
-
-Clone the repository.
-
-Ensure .NET SDK 9.0 and SQL Server LocalDB are installed.
-
-Update the DefaultConnection string in appsettings.json to match your local environment.
-
-Run the project in Visual Studio 2022.
+1. **Clone the repository**  
+2. **Ensure .NET SDK 9.0 and SQL Server LocalDB are installed**  
+3. **Update the `DefaultConnection` string in `appsettings.json`** to match your local setup  
+4. **Run the project in Visual Studio 2022** 
